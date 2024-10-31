@@ -7,9 +7,11 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
+    "prettier:format": "prettier --write .",
     "lint": "next lint",
-    "format": "prettier --write .",
-    "prepare": "husky"
+    "eslint:format": "eslint . --fix",
+    "prepare": "husky",
+    "check-types": "tsc --noEmit --pretty"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.0",
