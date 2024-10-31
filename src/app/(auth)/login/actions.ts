@@ -6,9 +6,9 @@ import { signinSchema } from './validate';
 export const loginAction = actionClient
   .metadata({ name: 'login' })
   .schema(signinSchema)
-  .action(async ({ parsedInput: { username, password } }) => {
+  .action(async ({ parsedInput: { email, password } }) => {
     try {
-      console.log(username, password);
+      console.log(email, password);
       return { success: true };
     } catch {
       return { error: 'Invalid credentials' };

@@ -18,12 +18,13 @@ import { z } from 'zod';
 import { LoaderCircle } from 'lucide-react';
 import { signinSchema } from '../validate';
 import { loginAction } from '../actions';
+import Link from 'next/link';
 
 function FormSignIn() {
   const form = useForm<z.infer<typeof signinSchema>>({
     resolver: zodResolver(signinSchema),
     defaultValues: {
-      username: '',
+      email: '',
       password: '',
     },
   });
@@ -47,10 +48,10 @@ function FormSignIn() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
         <FormField
           control={form.control}
-          name="username"
+          name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>Email address</FormLabel>
               <FormControl>
                 <Input {...field} type="email" placeholder="Email" />
               </FormControl>
@@ -82,6 +83,13 @@ function FormSignIn() {
           {form.formState.isSubmitting && <LoaderCircle className="mr-2 h-5 w-5 animate-spin" />}
           Sign in
         </Button>
+
+        <p className="text-sm text-muted-foreground">
+          No account?{' '}
+          <Link className="text-blue-500 hover:text-blue-700" href="/register">
+            Sign Up Now
+          </Link>
+        </p>
       </form>
     </Form>
   );
