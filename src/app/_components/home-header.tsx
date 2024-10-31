@@ -42,7 +42,11 @@ async function HomeHeader() {
               Sign Up
             </Link>
           </>
-        ) : null}
+        ) : (
+          <Link className="text-muted-foreground hover:text-foreground" href="/dashboard">
+            Dashboard
+          </Link>
+        )}
       </nav>
     </header>
   );

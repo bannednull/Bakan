@@ -59,5 +59,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       session.user.id = token.sub as string;
       return session;
     },
+    authorized: async ({ auth, request }) => {
+      const isLoggedIn = !!auth?.user;
+      const isOnDashboard = request.nextUrl.pathname.startsWith('/dashboard');
+      return isLoggedIn || !isOnDashboard;
+    },
   },
 });
