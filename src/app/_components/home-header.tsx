@@ -6,10 +6,13 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from '@/components/ui/navigation-menu';
+import { auth } from '@/lib/auth';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
-function HomeHeader() {
+async function HomeHeader() {
+  const session = await auth();
+
   return (
     <header className="py-4">
       <nav className="mx-auto flex max-w-screen-lg items-center justify-between gap-4">
@@ -29,13 +32,17 @@ function HomeHeader() {
 
         <ToggleTheme />
 
-        <Link href="/login">Sign In</Link>
-        <Link
-          className={cn(buttonVariants(), 'bg-blue-500 text-white hover:bg-blue-600')}
-          href="/register"
-        >
-          Sign Up
-        </Link>
+        {!session ? (
+          <>
+            <Link href="/login">Sign In</Link>
+            <Link
+              className={cn(buttonVariants(), 'bg-blue-500 text-white hover:bg-blue-600')}
+              href="/register"
+            >
+              Sign Up
+            </Link>
+          </>
+        ) : null}
       </nav>
     </header>
   );
