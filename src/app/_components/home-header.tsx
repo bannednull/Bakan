@@ -10,7 +10,7 @@ import Link from 'next/link';
 function HomeHeader() {
   return (
     <header className="py-4">
-      <nav className="mx-auto flex max-w-screen-lg items-center justify-between">
+      <nav className="mx-auto flex max-w-screen-lg items-center justify-between gap-4">
         <h1 className="text-xl font-bold">Bakan</h1>
 
         <NavigationMenu className="mx-auto">
@@ -26,6 +26,8 @@ function HomeHeader() {
         </NavigationMenu>
 
         <ToggleTheme />
+
+        <Link href="/login">Sign In</Link>
       </nav>
     </header>
   );
