@@ -1,0 +1,55 @@
+[
+  {
+    "name": "Free",
+    "description": "For individuals",
+    "features": [
+      "Up to 3 users",
+      "1 GB of storage",
+      "Email support (48 hours response)",
+      "Basic integrations (Google, Slack)",
+      "Limited API access"
+    ],
+    "price": {
+      "monthly": 0,
+      "yearly": 0
+    }
+  },
+  {
+    "name": "Premium",
+    "description": "For small teams",
+    "features": [
+      "Unlimited users",
+      "50 GB of storage",
+      "Priority support (24 hours response)",
+      "Advanced integrations (Zapier, Salesforce)",
+      "Up to 5 task automations",
+      "Partial API access",
+      "Customizable dashboards",
+      "Weekly backups"
+    ],
+    "price": {
+      "monthly": 19,
+      "yearly": 228
+    }
+  },
+  {
+    "name": "Enterprise",
+    "description": "For industry leaders",
+    "features": [
+      "Unlimited users",
+      "Unlimited storage",
+      "24/7 support with dedicated management",
+      "Customized integrations",
+      "Unlimited automations",
+      "Full and optimized API access",
+      "Consulting and training services",
+      "Daily backups with instant restore",
+      "Advanced security (SSO, audits)",
+      "Access to real-time reports"
+    ],
+    "price": {
+      "monthly": 49,
+      "yearly": 588
+    }
+  }
+]

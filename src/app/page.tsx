@@ -1,4 +1,5 @@
 import HomeHeader from './_components/home-header';
+import Pricing from './_components/pricing';
 
 export default function Home() {
   return (
@@ -22,6 +23,18 @@ export default function Home() {
               Time
             </h1>
           </div>
+        </section>
+
+        <section className="py-24">
+          <div className="mx-auto mb-4 max-w-xl text-center">
+            <h3 className="text-center text-3xl font-extrabold">Pricing</h3>
+            <p className="text-muted-foreground">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore iste nam fugiat
+              magnam eveniet
+            </p>
+          </div>
+
+          <Pricing />
         </section>
       </main>
     </>
