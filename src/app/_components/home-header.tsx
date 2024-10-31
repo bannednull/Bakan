@@ -1,10 +1,12 @@
 import { ToggleTheme } from '@/components/toggle-theme';
+import { buttonVariants } from '@/components/ui/button';
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
 } from '@/components/ui/navigation-menu';
+import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
 function HomeHeader() {
@@ -28,6 +30,12 @@ function HomeHeader() {
         <ToggleTheme />
 
         <Link href="/login">Sign In</Link>
+        <Link
+          className={cn(buttonVariants(), 'bg-blue-500 text-white hover:bg-blue-600')}
+          href="/register"
+        >
+          Sign Up
+        </Link>
       </nav>
     </header>
   );
