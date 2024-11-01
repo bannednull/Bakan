@@ -11,6 +11,11 @@ import { auth } from '@/lib/auth';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
+const routes = [
+  { title: 'Home', href: '/' },
+  { title: 'Blog', href: '/blog' },
+];
+
 async function HomeHeader() {
   const session = await auth();
 
@@ -20,14 +25,16 @@ async function HomeHeader() {
         <h1 className="text-xl font-bold">Bakan</h1>
 
         <NavigationMenu className="mx-auto">
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <Link href="/" legacyBehavior passHref>
-                <NavigationMenuLink className="text-muted-foreground hover:text-foreground">
-                  Home
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
+          <NavigationMenuList className="gap-4">
+            {routes.map((item) => (
+              <NavigationMenuItem key={item.title}>
+                <Link href={item.href} legacyBehavior passHref>
+                  <NavigationMenuLink className="text-muted-foreground hover:text-foreground">
+                    {item.title}
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            ))}
           </NavigationMenuList>
         </NavigationMenu>
 
