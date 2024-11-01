@@ -1,0 +1,14 @@
+model Blog {
+  id        Int     @id @default(autoincrement())
+  title     String
+  content   String
+  userId    Int     @map("user_id")
+  published Boolean @default(false)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  User User @relation(fields: [userId], references: [id])
+
+  @@map("blogs")
+}
