@@ -1,6 +1,13 @@
 'use client';
 
-import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
+import {
+  ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  getPaginationRowModel,
+  PaginationState,
+  useReactTable,
+} from '@tanstack/react-table';
 
 import {
   Table,
@@ -10,16 +17,48 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { useFilteredBlogs } from '../searchParams';
+import { Button } from '@/components/ui/button';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  totalItems: number;
+  pageSize: number;
 }
 
-export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>({
+  columns,
+  data,
+  totalItems,
+  pageSize = 10,
+}: DataTableProps<TData, TValue>) {
+  const { currentPage, setCurrentPage } = useFilteredBlogs();
+
+  const paginationState: PaginationState = {
+    pageIndex: currentPage - 1, // Adjust for 0-based index
+    pageSize: pageSize,
+  };
+
+  const pageCount = Math.ceil(totalItems / pageSize);
+
   const table = useReactTable({
     data,
     columns,
+    pageCount: pageCount,
+    state: {
+      pagination: paginationState,
+    },
+    manualPagination: true,
+    onPaginationChange: (updater) => {
+      if (typeof updater === 'function') {
+        const newState = updater(paginationState);
+        setCurrentPage(newState.pageIndex + 1);
+      } else {
+        setCurrentPage(updater.pageIndex + 1);
+      }
+    },
+    getPaginationRowModel: getPaginationRowModel(),
     getCoreRowModel: getCoreRowModel(),
     manualFiltering: true,
   });
@@ -66,6 +105,26 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
           <div className="flex-1 text-sm text-muted-foreground">
             {table.getFilteredSelectedRowModel().rows.length} of{' '}
             {table.getFilteredRowModel().rows.length} row(s) selected.
+          </div>
+
+          <div className="ml-auto flex items-center gap-4">
+            <Button
+              size="sm"
+              variant="secondary"
+              onClick={() => table.previousPage()}
+              disabled={!table.getCanPreviousPage()}
+            >
+              Previous
+            </Button>
+            <span>{`Page ${currentPage} of ${pageCount}`}</span>
+            <Button
+              size="sm"
+              variant="secondary"
+              onClick={() => table.nextPage()}
+              disabled={!table.getCanNextPage()}
+            >
+              Next
+            </Button>
           </div>
         </div>
       </div>

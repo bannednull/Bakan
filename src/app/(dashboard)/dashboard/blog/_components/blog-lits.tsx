@@ -1,10 +1,11 @@
 import { prisma } from '@/lib/prisma';
 import { columns } from './columns';
 import { DataTable } from './data-table';
+import { searchParamsCache } from '../searchParams';
 
 async function BlogList() {
   const pageSize = 10;
-  const page = 1;
+  const page = searchParamsCache.get('page');
 
   const skip = (page - 1) * pageSize;
 

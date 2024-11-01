@@ -3,8 +3,15 @@ import Header from '@/app/(dashboard)/_components/header';
 import { Suspense } from 'react';
 import BlogList from './_components/blog-lits';
 import CreateBlog from './_components/create-blog';
+import { searchParamsCache } from './searchParams';
+import { SearchParams } from 'nuqs/server';
 
-function BlogPage() {
+type PageProps = {
+  searchParams: Promise<SearchParams>;
+};
+
+async function BlogPage({ searchParams }: PageProps) {
+  searchParamsCache.parse(await searchParams);
   return (
     <ScrollArea className="h-full">
       <Header title="Blog" />
