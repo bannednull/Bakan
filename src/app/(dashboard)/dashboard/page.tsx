@@ -1,12 +1,13 @@
-import Header from './_components/header';
+import Header from '@/app/(dashboard)/_components/header';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 function DashboardPage() {
   return (
-    <>
+    <ScrollArea className="h-full">
       <Header />
 
-      <h1>Hello</h1>
-    </>
+      <div className="px-6 py-4"></div>
+    </ScrollArea>
   );
 }
 
