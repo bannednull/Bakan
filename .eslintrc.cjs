@@ -3,6 +3,7 @@ const rules = {
   '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
   '@typescript-eslint/no-empty-object-type': 'off',
   'tailwindcss/classnames-order': 'warn',
+  '@next/next/no-img-element': 'off',
 };
 
 module.exports = {
