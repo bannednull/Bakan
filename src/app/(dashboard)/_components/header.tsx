@@ -1,3 +1,4 @@
+import Profile from '@/components/profile';
 import { ToggleTheme } from '@/components/toggle-theme';
 import {
   Breadcrumb,
@@ -30,7 +31,10 @@ function Header(props: { title?: string }) {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <ToggleTheme />
+      <div className="flex items-center gap-2">
+        <ToggleTheme />
+        <Profile />
+      </div>
     </div>
   );
 }

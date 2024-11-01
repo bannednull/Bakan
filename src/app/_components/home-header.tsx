@@ -1,3 +1,4 @@
+import Profile from '@/components/profile';
 import { ToggleTheme } from '@/components/toggle-theme';
 import { buttonVariants } from '@/components/ui/button';
 import {
@@ -30,23 +31,23 @@ async function HomeHeader() {
           </NavigationMenuList>
         </NavigationMenu>
 
-        <ToggleTheme />
+        <div className="flex items-center gap-2">
+          <ToggleTheme />
 
-        {!session ? (
-          <>
-            <Link href="/login">Sign In</Link>
-            <Link
-              className={cn(buttonVariants(), 'bg-blue-500 text-white hover:bg-blue-600')}
-              href="/register"
-            >
-              Sign Up
-            </Link>
-          </>
-        ) : (
-          <Link className="text-muted-foreground hover:text-foreground" href="/dashboard">
-            Dashboard
-          </Link>
-        )}
+          {!session ? (
+            <>
+              <Link href="/login">Sign In</Link>
+              <Link
+                className={cn(buttonVariants(), 'bg-blue-500 text-white hover:bg-blue-600')}
+                href="/register"
+              >
+                Sign Up
+              </Link>
+            </>
+          ) : (
+            <Profile />
+          )}
+        </div>
       </nav>
     </header>
   );
