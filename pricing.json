@@ -9,6 +9,7 @@
       "Basic integrations (Google, Slack)",
       "Limited API access"
     ],
+    "highlight": false,
     "price": {
       "monthly": {
         "id": "price_1QDcBOKJikXCgDQQWQRqB3dP",
@@ -33,6 +34,7 @@
       "Customizable dashboards",
       "Weekly backups"
     ],
+    "highlight": true,
     "price": {
       "monthly": {
         "id": "price_1QDcDMKJikXCgDQQL1i4e8pz",
@@ -59,6 +61,7 @@
       "Advanced security (SSO, audits)",
       "Access to real-time reports"
     ],
+    "highlight": false,
     "price": {
       "monthly": {
         "id": "price_1QDcErKJikXCgDQQRXtJ8j0B",

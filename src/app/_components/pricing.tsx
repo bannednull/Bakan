@@ -5,7 +5,7 @@ import pricing from '../../../pricing.json';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { useState } from 'react';
-import { formatAmount } from '@/lib/utils';
+import { cn, formatAmount } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { getStripe } from '@/lib/stripe/client';
@@ -42,12 +42,23 @@ function Pricing() {
         <strong className={!isMonthly ? 'text-primary' : 'text-muted-foreground'}>Annually</strong>
       </div>
 
-      <div className="flex items-start justify-start gap-4">
+      <div className="mt-4 grid grid-cols-3 gap-4">
         {pricing.map((item, index) => {
           const currentPrice = isMonthly ? item.price.monthly.value : item.price.yearly.value;
           const currentPriceId = isMonthly ? item.price.monthly.id : item.price.yearly.id;
           return (
-            <div key={index} className="flex flex-1 flex-col rounded-lg border bg-accent/30 p-4">
+            <div
+              key={index}
+              className={cn(
+                item.highlight ? 'border-2 bg-slate-200 dark:bg-slate-700' : 'border bg-accent/30',
+                'flex flex-1 flex-col rounded-lg p-6',
+              )}
+            >
+              {item.highlight && (
+                <span className="-ml-4 -mt-8 mb-4 inline w-[80px] rounded-lg bg-yellow-500 px-2 py-0.5 text-center text-xs text-black">
+                  Popular
+                </span>
+              )}
               <div className="space-y-1 text-center">
                 <h4 className="text-xl font-bold">{item.name}</h4>
                 <span className="text-muted-foreground">{item.description}</span>
@@ -59,7 +70,7 @@ function Pricing() {
 
               <Button
                 className="my-4"
-                variant="secondary"
+                variant={item.highlight ? 'secondary' : 'default'}
                 onClick={() => handleCheckout(currentPriceId)}
               >
                 Get Started
@@ -68,7 +79,12 @@ function Pricing() {
               <ul className="flex flex-col gap-2 text-sm text-muted-foreground">
                 {item.features.map((feature, index) => (
                   <li key={index} className="flex items-center gap-2">
-                    <Check className="size-4" />
+                    <Check
+                      className={cn(
+                        'size-4',
+                        item.highlight ? 'text-green-700' : 'text-muted-foreground',
+                      )}
+                    />
                     {feature}
                   </li>
                 ))}
