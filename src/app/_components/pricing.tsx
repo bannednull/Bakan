@@ -6,12 +6,32 @@ import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { useState } from 'react';
 import { formatAmount } from '@/lib/utils';
+import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+import { getStripe } from '@/lib/stripe/client';
+import { checkoutWithStripe } from '@/lib/stripe/server';
 
 function Pricing() {
   const [isMonthly, setIsMonthly] = useState(true);
 
+  const { data: session } = useSession();
+  const router = useRouter();
+
   const handleSwitchChange = () => {
     setIsMonthly(!isMonthly);
+  };
+
+  const handleCheckout = async (priceId: string) => {
+    if (!session) router.push('/register');
+
+    const { sessionId } = await checkoutWithStripe(priceId);
+
+    if (!sessionId) {
+      return null;
+    }
+
+    const stripe = await getStripe();
+    stripe?.redirectToCheckout({ sessionId });
   };
 
   return (
@@ -24,7 +44,8 @@ function Pricing() {
 
       <div className="flex items-start justify-start gap-4">
         {pricing.map((item, index) => {
-          const currentPrice = isMonthly ? item.price.monthly : item.price.yearly;
+          const currentPrice = isMonthly ? item.price.monthly.value : item.price.yearly.value;
+          const currentPriceId = isMonthly ? item.price.monthly.id : item.price.yearly.id;
           return (
             <div key={index} className="flex flex-1 flex-col rounded-lg border bg-accent/30 p-4">
               <div className="space-y-1 text-center">
@@ -36,7 +57,11 @@ function Pricing() {
                 {formatAmount(String(currentPrice))}
               </h5>
 
-              <Button className="my-4" variant="secondary">
+              <Button
+                className="my-4"
+                variant="secondary"
+                onClick={() => handleCheckout(currentPriceId)}
+              >
                 Get Started
               </Button>
 

@@ -30,6 +30,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           id: String(user.id),
           name: user.name,
           email: user.email,
+          customerId: user.customerId || '',
         };
       },
     }),
@@ -51,12 +52,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
       if (user) {
         token.id = user.id as string;
+        token.customerId = user.customerId;
       }
 
       return token;
     },
     session: ({ session, token }: { session: Session; token: JWT }) => {
       session.user.id = token.sub as string;
+      session.user.customerId = token.customerId;
       return session;
     },
     authorized: async ({ auth, request }) => {

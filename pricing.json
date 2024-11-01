@@ -10,8 +10,14 @@
       "Limited API access"
     ],
     "price": {
-      "monthly": 0,
-      "yearly": 0
+      "monthly": {
+        "id": "price_1QDcBOKJikXCgDQQWQRqB3dP",
+        "value": 0
+      },
+      "yearly": {
+        "id": "price_1QDcI7KJikXCgDQQ5YEaJfq0",
+        "value": 0
+      }
     }
   },
   {
@@ -28,8 +34,14 @@
       "Weekly backups"
     ],
     "price": {
-      "monthly": 19,
-      "yearly": 228
+      "monthly": {
+        "id": "price_1QDcDMKJikXCgDQQL1i4e8pz",
+        "value": 109
+      },
+      "yearly": {
+        "id": "price_1QG8o6KJikXCgDQQc4f4o4YR",
+        "value": 1308
+      }
     }
   },
   {
@@ -48,8 +60,14 @@
       "Access to real-time reports"
     ],
     "price": {
-      "monthly": 49,
-      "yearly": 588
+      "monthly": {
+        "id": "price_1QDcErKJikXCgDQQRXtJ8j0B",
+        "value": 229
+      },
+      "yearly": {
+        "id": "price_1QG8mvKJikXCgDQQc3WBZCO4",
+        "value": 2748
+      }
     }
   }
 ]
