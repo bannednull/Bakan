@@ -1,0 +1,23 @@
+enum SubscriptionPeriod {
+  month
+  year
+}
+
+model Subscription {
+  id             Int                @id @default(autoincrement())
+  userId         Int
+  subscriptionId String?            @unique @map("subscription_id")
+  customerId     String?            @unique @map("customer_id")
+  product        String?
+  plan           String?
+  period         SubscriptionPeriod
+  status         String?
+  endDate        DateTime           @map("end_date")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  User User @relation(fields: [userId], references: [id])
+
+  @@map("subscriptions")
+}

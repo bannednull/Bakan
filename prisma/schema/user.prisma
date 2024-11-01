@@ -1,12 +1,14 @@
 model User {
-  id       Int     @id @default(autoincrement())
-  name     String?
-  email    String? @unique
-  password String?
-  image    String?
+  id         Int     @id @default(autoincrement())
+  name       String?
+  email      String? @unique
+  password   String?
+  image      String?
+  customerId String? @unique @map("customer_id")
 
-  Account Account[]
-  Session Session[]
+  Account      Account[]
+  Session      Session[]
+  Subscription Subscription[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
