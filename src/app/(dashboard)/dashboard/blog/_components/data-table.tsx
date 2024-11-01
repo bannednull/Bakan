@@ -116,7 +116,7 @@ export function DataTable<TData, TValue>({
             >
               Previous
             </Button>
-            <span>{`Page ${currentPage} of ${pageCount}`}</span>
+            <span className="text-sm text-muted-foreground">{`Page ${currentPage} of ${pageCount}`}</span>
             <Button
               size="sm"
               variant="secondary"
