@@ -3,6 +3,7 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Blog } from '@dashboard/blog/validate';
+import CellAction from '@dashboard/blog/_components/cell-action';
 
 export const columns: ColumnDef<Blog>[] = [
   {
@@ -38,5 +39,9 @@ export const columns: ColumnDef<Blog>[] = [
     cell: ({ cell }) => {
       return cell.getValue() ? 'Yes' : 'No';
     },
+  },
+  {
+    id: 'actions',
+    cell: ({ row: { original } }) => <CellAction data={original} />,
   },
 ];
