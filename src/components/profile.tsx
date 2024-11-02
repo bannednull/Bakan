@@ -30,16 +30,18 @@ async function Profile() {
           {getTwofirtsletters(session.user.email!)}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent className="w-[150px]" align="end">
         <DropdownMenuLabel className="text-[10px]">My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <Link className="flex items-center gap-2" href="/dashboard">
+          <Link className="flex w-full items-center gap-2" href="/dashboard">
             <Home /> Dashboard
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <User /> Profile
+          <Link className="flex w-full items-center gap-2" href="/dashboard/profile">
+            <User /> Profile
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuItem>
           <form
@@ -48,7 +50,7 @@ async function Profile() {
               await signOut();
             }}
           >
-            <button type="submit" className="flex items-center gap-2">
+            <button type="submit" className="flex w-full items-center gap-2">
               <LogOut /> Log Out
             </button>
           </form>
