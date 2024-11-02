@@ -5,6 +5,7 @@ import BlogList from './_components/blog-lits';
 import CreateBlog from './_components/create-blog';
 import { searchParamsCache } from './searchParams';
 import { SearchParams } from 'nuqs/server';
+import BoxSearch from './_components/box-search';
 
 type PageProps = {
   searchParams: Promise<SearchParams>;
@@ -19,7 +20,11 @@ async function BlogPage({ searchParams }: PageProps) {
       <div className="px-6 py-4">
         <div className="mb-4 flex items-center justify-between gap-4">
           <h1 className="text-xl font-bold">Blog</h1>
-          <CreateBlog />
+
+          <div className="flex items-center gap-4">
+            <BoxSearch />
+            <CreateBlog />
+          </div>
         </div>
         <Suspense fallback={<div>Loading...</div>}>
           <BlogList />
