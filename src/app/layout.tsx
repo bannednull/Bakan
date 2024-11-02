@@ -4,6 +4,7 @@ import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { SessionProvider } from 'next-auth/react';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
+import NextTopLoader from 'nextjs-toploader';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -29,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <NextTopLoader showSpinner={false} />
         <SessionProvider>
           <NuqsAdapter>
             <ThemeProvider
