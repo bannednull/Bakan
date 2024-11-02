@@ -6,6 +6,7 @@ import CreateBlog from './_components/create-blog';
 import { searchParamsCache } from './searchParams';
 import { SearchParams } from 'nuqs/server';
 import BoxSearch from './_components/box-search';
+import Heading from '../../_components/heading';
 
 type PageProps = {
   searchParams: Promise<SearchParams>;
@@ -17,9 +18,9 @@ async function BlogPage({ searchParams }: PageProps) {
     <ScrollArea className="h-full">
       <Header title="Blog" />
 
-      <div className="px-6 py-4">
+      <div className="px-8 py-4">
         <div className="mb-4 flex items-center justify-between gap-4">
-          <h1 className="text-xl font-bold">Blog</h1>
+          <Heading title="Blog" description="Manage your blog posts" />
 
           <div className="flex items-center gap-4">
             <BoxSearch />
