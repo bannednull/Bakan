@@ -1,3 +1,4 @@
+import Logo from '@/components/logo';
 import Profile from '@/components/profile';
 import { ToggleTheme } from '@/components/toggle-theme';
 import { buttonVariants } from '@/components/ui/button';
@@ -22,8 +23,7 @@ async function HomeHeader() {
   return (
     <header className="py-4">
       <nav className="mx-auto flex max-w-screen-lg items-center justify-between gap-4">
-        <h1 className="text-xl font-bold">Bakan</h1>
-
+        <Logo className="size-6" /> <h1 className="text-xl font-bold">Bakan</h1>
         <NavigationMenu className="mx-auto">
           <NavigationMenuList className="gap-4">
             {routes.map((item) => (
@@ -37,7 +37,6 @@ async function HomeHeader() {
             ))}
           </NavigationMenuList>
         </NavigationMenu>
-
         <div className="flex items-center gap-4">
           <ToggleTheme />
 

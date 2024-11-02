@@ -1,4 +1,5 @@
 import ActivateLink from '@/components/activate-link';
+import Logo from '@/components/logo';
 import { Home, NotebookPen } from 'lucide-react';
 
 const routes = [
@@ -18,7 +19,10 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <main className="grid h-screen grid-cols-[270px_1fr]">
       <aside className="flex flex-col gap-4 border-r bg-muted p-5">
-        <h1 className="mb-2 text-xl font-bold">Bakan</h1>
+        <div className="mb-2 flex items-center gap-2">
+          <Logo className="size-6" />
+          <h1 className="text-xl font-bold">Bakan</h1>
+        </div>
 
         <nav>
           <ul className="flex flex-col gap-1 text-sm">
