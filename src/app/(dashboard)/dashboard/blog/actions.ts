@@ -1,9 +1,9 @@
 'use server';
 
+import { revalidatePath } from 'next/cache';
 import { actionWithAuth } from '@/lib/safe-action';
 import { prisma } from '@/lib/prisma';
-import { revalidatePath } from 'next/cache';
-import { blogSchema } from './validate';
+import { blogSchema } from '@dashboard/blog/validate';
 
 export const blogAction = actionWithAuth
   .metadata({ name: 'create_blog' })

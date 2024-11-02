@@ -1,8 +1,8 @@
 'use client';
 
-import { Checkbox } from '@/components/ui/checkbox';
 import { ColumnDef } from '@tanstack/react-table';
-import { Blog } from '../validate';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Blog } from '@dashboard/blog/validate';
 
 export const columns: ColumnDef<Blog>[] = [
   {

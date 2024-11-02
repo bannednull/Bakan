@@ -1,6 +1,6 @@
-import Header from '@/app/(dashboard)/_components/header';
+import Header from '@dashboard/_components/header';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import Heading from '../_components/heading';
+import Heading from '@dashboard/_components/heading';
 
 function DashboardPage() {
   return (

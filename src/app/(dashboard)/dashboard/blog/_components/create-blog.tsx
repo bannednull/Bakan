@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -9,8 +10,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Plus } from 'lucide-react';
-import { useState } from 'react';
-import FormBlog from './form-blog';
+import FormBlog from '@dashboard/blog/_components/form-blog';
 
 function CreateBlog() {
   const [isOpen, setIsOpen] = useState<boolean>(false);

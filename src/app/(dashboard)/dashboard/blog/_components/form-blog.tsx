@@ -18,8 +18,8 @@ import { useAction } from 'next-safe-action/hooks';
 import { Textarea } from '@/components/ui/textarea';
 import { LoaderCircle } from 'lucide-react';
 import { toast } from 'sonner';
-import { blogSchema } from '../validate';
-import { blogAction } from '../actions';
+import { blogSchema } from '@dashboard/blog/validate';
+import { blogAction } from '@dashboard/blog/actions';
 
 function FormBlog({ close }: { close?: () => void }) {
   const form = useForm<z.infer<typeof blogSchema>>({

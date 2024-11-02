@@ -1,7 +1,7 @@
 import { prisma } from '@/lib/prisma';
-import { columns } from './columns';
-import { DataTable } from './data-table';
-import { searchParamsCache } from '../searchParams';
+import { columns } from '@dashboard/blog/_components/columns';
+import { DataTable } from '@dashboard/blog/_components/data-table';
+import { searchParamsCache } from '@dashboard/blog/searchParams';
 import { Prisma } from '@prisma/client';
 
 async function BlogList() {

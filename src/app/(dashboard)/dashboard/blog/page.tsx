@@ -1,12 +1,12 @@
-import { ScrollArea } from '@/components/ui/scroll-area';
-import Header from '@/app/(dashboard)/_components/header';
 import { Suspense } from 'react';
-import BlogList from './_components/blog-lits';
-import CreateBlog from './_components/create-blog';
-import { searchParamsCache } from './searchParams';
+import Header from '@dashboard/_components/header';
+import BlogList from '@dashboard/blog/_components/blog-lits';
+import CreateBlog from '@dashboard/blog/_components/create-blog';
+import { searchParamsCache } from '@dashboard/blog/searchParams';
 import { SearchParams } from 'nuqs/server';
-import BoxSearch from './_components/box-search';
-import Heading from '../../_components/heading';
+import Heading from '@dashboard/_components/heading';
+import BoxSearch from '@dashboard/blog/_components/box-search';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 type PageProps = {
   searchParams: Promise<SearchParams>;

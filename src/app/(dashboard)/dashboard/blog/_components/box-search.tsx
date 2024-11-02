@@ -1,10 +1,10 @@
 'use client';
 
-import { Input } from '@/components/ui/input';
 import { useTransition } from 'react';
-import { cn } from '@/lib/utils';
 import { Search } from 'lucide-react';
-import { useFilteredBlogs } from '../searchParams';
+import { Input } from '@/components/ui/input';
+import { cn } from '@/lib/utils';
+import { useFilteredBlogs } from '@dashboard/blog/searchParams';
 
 function BoxSearch() {
   const { searchQuery, setSearchQuery, setCurrentPage } = useFilteredBlogs();
