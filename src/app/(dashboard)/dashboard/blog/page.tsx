@@ -7,6 +7,7 @@ import { SearchParams } from 'nuqs/server';
 import Heading from '@dashboard/_components/heading';
 import BoxSearch from '@dashboard/blog/_components/box-search';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import DeletePost from '@dashboard/blog/_components/delete-post';
 
 type PageProps = {
   searchParams: Promise<SearchParams>;
@@ -31,6 +32,8 @@ async function BlogPage({ searchParams }: PageProps) {
           <BlogList />
         </Suspense>
       </div>
+
+      <DeletePost />
     </ScrollArea>
   );
 }

@@ -30,7 +30,7 @@ function CellAction({ data }: PropsActions) {
         <DropdownMenuItem onClick={() => blogStore.setState({ id: data.id })}>
           <Pencil strokeWidth={1} /> Edit
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => blogStore.setState({ id: data.id })}>
+        <DropdownMenuItem onClick={() => blogStore.setState({ id: data.id, isRemove: true })}>
           <Trash strokeWidth={1} /> Delete
         </DropdownMenuItem>
       </DropdownMenuContent>
