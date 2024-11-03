@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { SessionProvider } from 'next-auth/react';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import NextTopLoader from 'nextjs-toploader';
+import { Toaster } from '@/components/ui/sonner';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -43,6 +44,7 @@ export default function RootLayout({
             </ThemeProvider>
           </NuqsAdapter>
         </SessionProvider>
+        <Toaster duration={1500} />
       </body>
     </html>
   );
