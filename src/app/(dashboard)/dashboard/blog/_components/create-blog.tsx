@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -25,11 +26,13 @@ function CreateBlog() {
           Add Post
         </Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="sm:max-w-2xl">
         <DialogHeader>
           <DialogTitle>Create post</DialogTitle>
-          <FormBlog close={handleClose} />
+          <DialogDescription>Fill in the details to create your post</DialogDescription>
         </DialogHeader>
+
+        <FormBlog close={handleClose} />
       </DialogContent>
     </Dialog>
   );

@@ -20,6 +20,7 @@ import { LoaderCircle } from 'lucide-react';
 import { toast } from 'sonner';
 import { blogSchema } from '@dashboard/blog/validate';
 import { blogAction } from '@dashboard/blog/actions';
+import { DialogClose } from '@/components/ui/dialog';
 
 function FormBlog({ close }: { close?: () => void }) {
   const form = useForm<z.infer<typeof blogSchema>>({
@@ -92,10 +93,17 @@ function FormBlog({ close }: { close?: () => void }) {
           <p className="text-red-500">{form.formState.errors.root.message}</p>
         )}
 
-        <Button size="sm" type="submit">
-          {form.formState.isSubmitting && <LoaderCircle className="mr-2 h-5 w-5 animate-spin" />}
-          Create Post
-        </Button>
+        <div className="flex items-center justify-end gap-2">
+          <DialogClose asChild>
+            <Button size="sm" variant="outline">
+              Cancel
+            </Button>
+          </DialogClose>
+          <Button size="sm" type="submit">
+            {form.formState.isSubmitting && <LoaderCircle className="mr-2 h-5 w-5 animate-spin" />}
+            Create Post
+          </Button>
+        </div>
       </form>
     </Form>
   );
