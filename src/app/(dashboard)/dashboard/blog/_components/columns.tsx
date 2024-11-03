@@ -28,10 +28,16 @@ export const columns: ColumnDef<Blog>[] = [
   {
     accessorKey: 'title',
     header: 'Title',
+    cell: ({ row: { original } }) => {
+      return <div className="line-clamp-1 max-w-[200px]">{original.title}</div>;
+    },
   },
   {
     accessorKey: 'content',
     header: 'Content',
+    cell: ({ row: { original } }) => {
+      return <div className="line-clamp-2 max-w-[300px]">{original.content}</div>;
+    },
   },
   {
     accessorKey: 'published',
