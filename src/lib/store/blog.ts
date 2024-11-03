@@ -6,6 +6,8 @@ interface BlogState {
   blog: Blog | null;
   isRemove: boolean;
   isPreview: boolean;
+  isEdit: boolean;
+  isOpen: boolean;
 }
 
 interface BlogActions {}
@@ -17,6 +19,8 @@ const initialState: BlogState = {
   blog: null,
   isRemove: false,
   isPreview: false,
+  isEdit: false,
+  isOpen: false,
 };
 
 export const blogStore = create<BlogStore>()(() => ({

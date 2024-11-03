@@ -6,7 +6,7 @@ import { prisma } from '@/lib/prisma';
 import { blogSchema } from '@dashboard/blog/validate';
 import { z } from 'zod';
 
-export const blogAction = actionWithAuth
+export const createBlogAction = actionWithAuth
   .metadata({ name: 'create_blog' })
   .schema(blogSchema)
   .action(async ({ parsedInput: { title, content, published }, ctx: { userId } }) => {
@@ -22,6 +22,34 @@ export const blogAction = actionWithAuth
       revalidatePath('/dashboard/blog');
       return { success: 'Blog created successfully' };
     } catch {
+      return { error: 'Something went wrong' };
+    }
+  });
+
+export const updateBlogAction = actionWithAuth
+  .metadata({ name: 'update_blog' })
+  .schema(blogSchema)
+  .action(async ({ parsedInput: { id, title, content, published }, ctx: { userId } }) => {
+    if (!id) {
+      return { error: 'No blog id found' };
+    }
+
+    try {
+      await prisma.blog.update({
+        where: {
+          id: +id,
+          userId: +userId,
+        },
+        data: {
+          title,
+          content,
+          published,
+        },
+      });
+      revalidatePath('/dashboard/blog');
+      return { success: 'Blog updated successfully' };
+    } catch (error) {
+      console.log(error);
       return { error: 'Something went wrong' };
     }
   });

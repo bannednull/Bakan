@@ -27,7 +27,9 @@ function CellAction({ data }: PropsActions) {
         <DropdownMenuItem onClick={() => blogStore.setState({ blog: data, isPreview: true })}>
           <Eye strokeWidth={1} /> Preview
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => blogStore.setState({ id: data.id })}>
+        <DropdownMenuItem
+          onClick={() => blogStore.setState({ blog: data, isOpen: true, isEdit: true })}
+        >
           <Pencil strokeWidth={1} /> Edit
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => blogStore.setState({ id: data.id, isRemove: true })}>

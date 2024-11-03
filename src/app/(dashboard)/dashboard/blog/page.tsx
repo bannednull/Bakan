@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import Header from '@dashboard/_components/header';
 import BlogList from '@dashboard/blog/_components/blog-lits';
-import CreateBlog from '@dashboard/blog/_components/create-blog';
+import UpsertBlog from '@dashboard/blog/_components/upsert-blog';
 import { searchParamsCache } from '@dashboard/blog/searchParams';
 import { SearchParams } from 'nuqs/server';
 import Heading from '@dashboard/_components/heading';
@@ -26,7 +26,7 @@ async function BlogPage({ searchParams }: PageProps) {
 
           <div className="flex items-center gap-4">
             <BoxSearch />
-            <CreateBlog />
+            <UpsertBlog />
           </div>
         </div>
         <Suspense fallback={<div>Loading...</div>}>

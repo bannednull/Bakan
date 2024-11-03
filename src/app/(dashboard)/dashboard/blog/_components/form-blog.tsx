@@ -19,27 +19,40 @@ import { Textarea } from '@/components/ui/textarea';
 import { LoaderCircle } from 'lucide-react';
 import { toast } from 'sonner';
 import { blogSchema } from '@dashboard/blog/validate';
-import { blogAction } from '@dashboard/blog/actions';
+import { createBlogAction, updateBlogAction } from '@dashboard/blog/actions';
 import { DialogClose } from '@/components/ui/dialog';
+import { blogStore } from '@/lib/store/blog';
+import { useShallow } from 'zustand/shallow';
 
-function FormBlog({ close }: { close?: () => void }) {
+function FormBlog({ close }: { close?: (open: boolean) => void }) {
+  const { isEdit, blog } = blogStore(
+    useShallow((state) => ({ isEdit: state.isEdit, blog: state.blog })),
+  );
+
   const form = useForm<z.infer<typeof blogSchema>>({
     resolver: zodResolver(blogSchema),
-    defaultValues: {
-      title: '',
-      content: '',
-      published: false,
-    },
+    defaultValues: isEdit
+      ? {
+          id: blog?.id.toString(),
+          title: blog?.title,
+          content: blog?.content,
+          published: blog?.published,
+        }
+      : {
+          title: '',
+          content: '',
+          published: false,
+        },
   });
 
-  const { executeAsync } = useAction(blogAction, {
+  const { executeAsync } = useAction(isEdit ? updateBlogAction : createBlogAction, {
     onSuccess({ data }) {
       if (data && 'error' in data) {
         form.setError('root', { message: data.error });
         return;
       }
-      close?.();
-      toast.success('Blog post created successfully');
+      close?.(false);
+      toast.success(`Blog post ${isEdit ? 'updated' : 'created'} successfully`);
     },
   });
 
@@ -48,6 +61,7 @@ function FormBlog({ close }: { close?: () => void }) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+        {isEdit && <input type="hidden" {...form.register('id')} />}
         <FormField
           control={form.control}
           name="title"
@@ -101,7 +115,7 @@ function FormBlog({ close }: { close?: () => void }) {
           </DialogClose>
           <Button size="sm" type="submit">
             {form.formState.isSubmitting && <LoaderCircle className="mr-2 h-5 w-5 animate-spin" />}
-            Create Post
+            {isEdit ? 'Update' : 'Create'} Post
           </Button>
         </div>
       </form>
