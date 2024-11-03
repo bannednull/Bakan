@@ -1,4 +1,8 @@
 import { prisma } from '@/lib/prisma';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
+dayjs.extend(relativeTime);
 
 async function PublicBlogPage() {
   const blogs = await prisma.blog.findMany();
@@ -21,8 +25,10 @@ async function PublicBlogPage() {
               className="h-[180px] w-full rounded-lg border"
             />
             <h3 className="my-2 text-xl font-bold">{blog.title}</h3>
-            <p className="text-muted-foreground">{blog.content}</p>
-            <span className="text-sm text-muted-foreground">{blog.createdAt.toISOString()}</span>
+            <span className="text-sm text-muted-foreground">
+              {dayjs().from(dayjs(blog?.createdAt))}
+            </span>
+            <p className="mt-2 line-clamp-3 text-muted-foreground">{blog.content}</p>
           </div>
         ))}
       </div>

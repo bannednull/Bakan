@@ -1,8 +1,18 @@
 'use client';
 
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+} from '@/components/ui/sheet';
 import { blogStore } from '@/lib/store/blog';
 import { useShallow } from 'zustand/shallow';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
+dayjs.extend(relativeTime);
 
 function PreviewPost() {
   const { isPreview, blog } = blogStore(
@@ -14,8 +24,9 @@ function PreviewPost() {
       <SheetContent className="sm:max-w-xl">
         <SheetHeader>
           <SheetTitle className="text-2xl">{blog?.title}</SheetTitle>
-          <div>{blog?.content}</div>
+          <SheetDescription>{dayjs().from(dayjs(blog?.createdAt))}</SheetDescription>
         </SheetHeader>
+        <div className="mt-4">{blog?.content}</div>
       </SheetContent>
     </Sheet>
   );
