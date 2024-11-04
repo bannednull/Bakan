@@ -4,6 +4,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Blog } from '@dashboard/blog/validate';
 import CellAction from '@dashboard/blog/_components/cell-action';
+import { cn } from '@/lib/utils';
 
 export const columns: ColumnDef<Blog>[] = [
   {
@@ -28,26 +29,40 @@ export const columns: ColumnDef<Blog>[] = [
   {
     accessorKey: 'title',
     header: 'Title',
-    cell: ({ row: { original } }) => {
-      return <div className="line-clamp-1 max-w-[200px]">{original.title}</div>;
+    cell: ({ cell }) => {
+      return <div className="line-clamp-1 max-w-[200px]">{cell.getValue() as string}</div>;
     },
   },
   {
     accessorKey: 'content',
     header: 'Content',
-    cell: ({ row: { original } }) => {
-      return <div className="line-clamp-2 max-w-[300px]">{original.content}</div>;
+    cell: ({ cell }) => {
+      return <div className="line-clamp-2 max-w-[300px]">{cell.getValue() as string}</div>;
     },
   },
   {
     accessorKey: 'published',
     header: 'Published',
     cell: ({ cell }) => {
-      return cell.getValue() ? 'Yes' : 'No';
+      const value = cell.getValue() as boolean;
+      return (
+        <span
+          className={cn('rounded-md px-3 py-1', {
+            'bg-green-300 text-green-800': value,
+            'bg-red-300 text-red-800': !value,
+          })}
+        >
+          {value ? 'Yes' : 'No'}
+        </span>
+      );
     },
   },
   {
     id: 'actions',
-    cell: ({ row: { original } }) => <CellAction data={original} />,
+    cell: ({ row: { original } }) => (
+      <div className="text-right">
+        <CellAction data={original} />
+      </div>
+    ),
   },
 ];
