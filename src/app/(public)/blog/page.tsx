@@ -1,6 +1,8 @@
 import { prisma } from '@/lib/prisma';
+import { createSlug } from '@/lib/utils';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import Link from 'next/link';
 
 dayjs.extend(relativeTime);
 
@@ -19,12 +21,14 @@ async function PublicBlogPage() {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {blogs.map((blog) => (
           <div key={blog.id}>
-            <img
-              src="/default.jpg"
-              alt={blog.title}
-              className="h-[180px] w-full rounded-lg border"
-            />
-            <h3 className="my-2 text-xl font-bold">{blog.title}</h3>
+            <Link className="hover:underline" href={`/blog/${blog.id}-${createSlug(blog.title)}`}>
+              <img
+                src="/default.jpg"
+                alt={blog.title}
+                className="h-[180px] w-full rounded-lg border"
+              />
+              <h3 className="my-2 text-xl font-bold">{blog.title}</h3>
+            </Link>
             <span className="text-sm text-muted-foreground">
               {dayjs().from(dayjs(blog?.createdAt))}
             </span>
