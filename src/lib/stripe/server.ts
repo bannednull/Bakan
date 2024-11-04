@@ -55,7 +55,7 @@ export async function checkoutWithStripe(priceId: string) {
       ],
       mode: 'subscription',
       cancel_url: getURL(),
-      success_url: getURL('/dashboard'),
+      success_url: getURL('/thankyou'),
     };
 
     let sessionStripe;
