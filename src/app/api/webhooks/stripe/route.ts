@@ -1,6 +1,7 @@
 import Stripe from 'stripe';
 import { stripe } from '@/lib/stripe';
 import { manageSubscription } from '@/lib/stripe/server';
+import { env } from '@/lib/env';
 
 const relevantEvents = new Set([
   'checkout.session.completed',
@@ -13,7 +14,7 @@ export async function POST(req: Request) {
   const body = await req.text();
 
   const sig = req.headers.get('stripe-signature') as string;
-  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+  const webhookSecret = env.STRIPE_WEBHOOK_SECRET;
 
   let event: Stripe.Event;
 
