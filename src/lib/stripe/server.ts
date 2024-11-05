@@ -45,6 +45,7 @@ export async function checkoutWithStripe(priceId: string) {
     const customer = await createOrRetrieveCustomer();
 
     const params: Stripe.Checkout.SessionCreateParams = {
+      payment_method_types: ['card'],
       allow_promotion_codes: true,
       customer,
       line_items: [
@@ -79,29 +80,45 @@ export async function checkoutWithStripe(priceId: string) {
   }
 }
 
-export async function manageSubscription(subscriptionId: string, customerId: string) {
+export async function handleCheckoutSessionCompleted(data: Stripe.Checkout.Session) {
+  const { customer, subscription: subId, mode } = data;
+
   const user = await prisma.user.findUnique({
-    where: { customerId },
+    where: { customerId: customer as string },
   });
   if (!user) throw new Error('User not found.');
   const { id: userId } = user;
 
-  const subscription = await stripe.subscriptions.retrieve(subscriptionId);
-  const endDate = toDateTime(subscription.current_period_end).toISOString();
-  const data = {
-    userId,
-    subscriptionId,
-    customerId,
-    product: subscription.items.data[0].price.product as string,
-    plan: subscription.items.data[0].price.id as string,
-    period: subscription.items.data[0].plan.interval as 'month' | 'year',
-    status: subscription.status as string,
-    endDate,
-  };
+  if (mode === 'subscription') {
+    const subscriptionId = subId as string;
+    const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+    const {
+      customer: customerId,
+      status,
+      items: { data: itemsData },
+      current_period_end,
+    } = subscription;
+    const {
+      price: { id: priceId, product: planId },
+      plan: { interval },
+    } = itemsData[0];
 
-  await prisma.subscription.upsert({
-    where: { subscriptionId },
-    create: data,
-    update: data,
-  });
+    const endDate = toDateTime(current_period_end).toISOString();
+
+    if (status === 'active') {
+      console.log('CREATE SUBSCRIPTION');
+      await prisma.subscription.create({
+        data: {
+          userId,
+          subscriptionId,
+          customerId: customerId as string,
+          product: planId as string,
+          plan: priceId as string,
+          period: interval as 'month' | 'year',
+          status: 'active',
+          endDate,
+        },
+      });
+    }
+  }
 }

@@ -1,23 +1,18 @@
 import Stripe from 'stripe';
 import { stripe } from '@/lib/stripe';
-import { manageSubscription } from '@/lib/stripe/server';
+import { handleCheckoutSessionCompleted } from '@/lib/stripe/server';
 import { env } from '@/lib/env';
+import { headers } from 'next/headers';
 
-const relevantEvents = new Set([
-  'checkout.session.completed',
-  'customer.subscription.created',
-  'customer.subscription.updated',
-  'customer.subscription.deleted',
-]);
+const relevantEvents = new Set(['checkout.session.completed']);
 
 export async function POST(req: Request) {
   const body = await req.text();
-
-  const sig = req.headers.get('stripe-signature') as string;
+  const headerPayload = await headers();
+  const sig = headerPayload.get('stripe-signature');
   const webhookSecret = env.STRIPE_WEBHOOK_SECRET;
 
   let event: Stripe.Event;
-
   try {
     if (!sig || !webhookSecret) return new Response('Webhook secret not found.', { status: 400 });
     event = stripe.webhooks.constructEvent(body, sig, webhookSecret);
@@ -28,24 +23,14 @@ export async function POST(req: Request) {
   if (relevantEvents.has(event.type)) {
     try {
       switch (event.type) {
-        case 'customer.subscription.created':
-        case 'customer.subscription.updated':
-        case 'customer.subscription.deleted':
-          const subscription = event.data.object as Stripe.Subscription;
-          await manageSubscription(subscription.id, subscription.customer as string);
-          break;
         case 'checkout.session.completed':
-          const checkoutSession = event.data.object as Stripe.Checkout.Session;
-          if (checkoutSession.mode === 'subscription') {
-            const subscriptionId = checkoutSession.subscription;
-            await manageSubscription(subscriptionId as string, checkoutSession.customer as string);
-          }
+          await handleCheckoutSessionCompleted(event.data.object);
           break;
         default:
           throw new Error('Unhandled relevant event!');
       }
     } catch {
-      return new Response('Webhook handler failed. View your Next.js function logs.', {
+      return new Response('Webhook handler failed', {
         status: 400,
       });
     }
@@ -55,5 +40,5 @@ export async function POST(req: Request) {
     });
   }
 
-  return new Response(JSON.stringify({ received: true }));
+  return new Response(JSON.stringify({ result: event, ok: true, received: true }));
 }
