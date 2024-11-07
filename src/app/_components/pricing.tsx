@@ -50,12 +50,12 @@ function Pricing() {
             <div
               key={index}
               className={cn(
-                item.highlight ? 'border-2 bg-slate-200 dark:bg-slate-700' : 'border bg-accent/30',
-                'flex flex-1 flex-col rounded-lg p-6',
+                'flex flex-1 flex-col rounded-lg border bg-accent/30 p-6',
+                item.highlight && 'border-yellow-300 dark:border-yellow-500',
               )}
             >
               {item.highlight && (
-                <span className="-ml-4 -mt-8 mb-4 inline w-[80px] rounded-lg bg-yellow-500 px-2 py-0.5 text-center text-xs text-black">
+                <span className="-ml-4 -mt-9 mb-4 inline w-[80px] rounded-lg bg-yellow-500 px-2 py-1 text-center text-xs text-black">
                   Popular
                 </span>
               )}
@@ -68,11 +68,7 @@ function Pricing() {
                 {formatAmount(String(currentPrice))}
               </h5>
 
-              <Button
-                className="my-4"
-                variant={item.highlight ? 'secondary' : 'default'}
-                onClick={() => handleCheckout(currentPriceId)}
-              >
+              <Button className="my-4" onClick={() => handleCheckout(currentPriceId)}>
                 Get Started
               </Button>
 
