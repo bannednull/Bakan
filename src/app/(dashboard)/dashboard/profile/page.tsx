@@ -1,6 +1,7 @@
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Header from '@dashboard/_components/header';
+import ChangePassword from '@dashboard/profile/_components/change-password';
 
 function ProfilePage() {
   return (
@@ -38,7 +39,8 @@ function ProfilePage() {
                 <h1>Billing</h1>
               </TabsContent>
               <TabsContent value="password" className="h-full">
-                <h1>Change password</h1>
+                <h1 className="mb-4 text-xl font-bold">Change password</h1>
+                <ChangePassword />
               </TabsContent>
             </div>
           </Tabs>
