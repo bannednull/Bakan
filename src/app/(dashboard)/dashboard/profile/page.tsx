@@ -1,9 +1,65 @@
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { auth } from '@/lib/auth';
+import { prisma } from '@/lib/prisma';
 import Header from '@dashboard/_components/header';
 import ChangePassword from '@dashboard/profile/_components/change-password';
+import { notFound } from 'next/navigation';
+import dayjs from 'dayjs';
+import pricing from '../../../../../pricing.json';
+import Heading from '@dashboard/_components/heading';
+import { formatAmount } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 
-function ProfilePage() {
+function calculateRemainingTime(expirationDateString: Date) {
+  const expirationDate = dayjs(expirationDateString);
+
+  const currentDate = dayjs();
+
+  const hasNotExpired = currentDate.isBefore(expirationDate);
+
+  if (!hasNotExpired) {
+    return 'The date has already expired.';
+  } else {
+    const remainingDays = expirationDate.diff(currentDate, 'days');
+    const remainingHours = expirationDate.diff(currentDate, 'hours') % 24;
+    return `There are ${remainingDays} days and ${remainingHours} hours left until the expiration date.`;
+  }
+}
+
+function getPlanById(priceId: string) {
+  for (const plan of pricing) {
+    if (plan.price.monthly.id === priceId || plan.price.yearly.id === priceId) {
+      return { price: plan.price, name: plan.name };
+    }
+  }
+  return null;
+}
+
+async function ProfilePage() {
+  const session = await auth();
+  if (!session) return notFound();
+
+  const infoUser = await prisma.user.findUnique({
+    where: {
+      id: +session.user.id,
+    },
+    select: {
+      id: true,
+      email: true,
+      name: true,
+      image: true,
+      customerId: true,
+      Subscription: {
+        where: {
+          status: 'active',
+        },
+      },
+    },
+  });
+
+  if (!infoUser) return notFound();
+
   return (
     <div className="flex h-screen flex-col">
       <Header title="Profile" />
@@ -18,12 +74,14 @@ function ProfilePage() {
               >
                 Account
               </TabsTrigger>
+
               <TabsTrigger
                 value="billing"
                 className="w-full justify-start data-[state=active]:bg-accent"
               >
                 Billing
               </TabsTrigger>
+
               <TabsTrigger
                 value="password"
                 className="w-full justify-start data-[state=active]:bg-accent"
@@ -35,9 +93,35 @@ function ProfilePage() {
               <TabsContent value="account" className="h-full">
                 <h1>Account</h1>
               </TabsContent>
+
               <TabsContent value="billing" className="h-full">
-                <h1>Billing</h1>
+                <Heading title="Billing" description="Your current subscription details" />
+
+                <div className="mt-4 border-b py-2">
+                  {infoUser.Subscription.map((item) => {
+                    const period = item.period === 'month' ? 'monthly' : 'yearly';
+                    const plan = getPlanById(item.plan!);
+                    if (!plan) return null;
+                    return (
+                      <div key={item.id} className="flex items-start justify-between">
+                        <div>
+                          <h3 className="text-lg font-bold">{plan.name}</h3>
+                          <p className="font-bold text-muted-foreground">
+                            {formatAmount(String(plan.price[period].value))} / {period}
+                          </p>
+                          <span className="text-xs text-muted-foreground">
+                            {calculateRemainingTime(item.endDate)}
+                          </span>
+                        </div>
+                        <Button size="sm" variant="outline">
+                          Cancel subscription
+                        </Button>
+                      </div>
+                    );
+                  })}
+                </div>
               </TabsContent>
+
               <TabsContent value="password" className="h-full">
                 <h1 className="mb-4 text-xl font-bold">Change password</h1>
                 <ChangePassword />
