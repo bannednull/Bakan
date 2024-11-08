@@ -1,3 +1,4 @@
+import usePage from '@/lib/hooks/use-page-param';
 import { useQueryState } from 'nuqs';
 import { createSearchParamsCache, parseAsInteger, parseAsString } from 'nuqs/server';
 
@@ -10,10 +11,7 @@ export const searchParamsCache = createSearchParamsCache(searchParams);
 
 //hooks
 export const useFilteredBlogs = () => {
-  const [currentPage, setCurrentPage] = useQueryState(
-    'page',
-    parseAsInteger.withOptions({ shallow: false }).withDefault(1),
-  );
+  const { currentPage, setCurrentPage } = usePage();
 
   const [searchQuery, setSearchQuery] = useQueryState(
     'q',
