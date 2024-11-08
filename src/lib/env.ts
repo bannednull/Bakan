@@ -7,6 +7,8 @@ export const env = createEnv({
     STRIPE_SECRET_KEY: z.string().min(1),
     STRIPE_WEBHOOK_SECRET: z.string().min(1),
     AUTH_SECRET: z.string().min(1),
+    UPSTASH_REDIS_REST_URL: z.string().url().min(1),
+    UPSTASH_REDIS_REST_TOKEN: z.string().min(1),
     NODE_ENV: z.enum(['development', 'production', 'test']),
   },
 
@@ -22,6 +24,8 @@ export const env = createEnv({
     STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
     STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
     AUTH_SECRET: process.env.AUTH_SECRET,
+    UPSTASH_REDIS_REST_URL: process.env.UPSTASH_REDIS_REST_URL,
+    UPSTASH_REDIS_REST_TOKEN: process.env.UPSTASH_REDIS_REST_TOKEN,
     NODE_ENV: process.env.NODE_ENV,
   },
 });
