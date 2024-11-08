@@ -1,6 +1,11 @@
 import Header from '@dashboard/_components/header';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import Heading from '@dashboard/_components/heading';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Dashboard',
+};
 
 function DashboardPage() {
   return (

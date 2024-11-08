@@ -2,9 +2,14 @@ import { prisma } from '@/lib/prisma';
 import { createSlug } from '@/lib/utils';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 
 dayjs.extend(relativeTime);
+
+export const metadata: Metadata = {
+  title: 'Blog',
+};
 
 async function PublicBlogPage() {
   const blogs = await prisma.blog.findMany();

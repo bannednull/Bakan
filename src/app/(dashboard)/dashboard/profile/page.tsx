@@ -10,6 +10,7 @@ import pricing from '../../../../../pricing.json';
 import Heading from '@dashboard/_components/heading';
 import { formatAmount } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import type { Metadata } from 'next';
 
 function calculateRemainingTime(expirationDateString: Date) {
   const expirationDate = dayjs(expirationDateString);
@@ -35,6 +36,10 @@ function getPlanById(priceId: string) {
   }
   return null;
 }
+
+export const metadata: Metadata = {
+  title: 'Profile',
+};
 
 async function ProfilePage() {
   const session = await auth();

@@ -1,4 +1,9 @@
-import FormSignUp from './_components/form-signup';
+import FormSignUp from '@/app/(auth)/register/_components/form-signup';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Register',
+};
 
 function SignUpPage() {
   return (

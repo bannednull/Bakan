@@ -19,7 +19,10 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'Bakan',
+  title: {
+    template: '%s ~ Bakan',
+    default: 'Bakan',
+  },
   description: 'Boilerplate for Next.JS App Router',
 };
 

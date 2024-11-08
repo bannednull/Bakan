@@ -1,4 +1,9 @@
-import FormSignIn from './_components/form-signin';
+import FormSignIn from '@/app/(auth)/login/_components/form-signin';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Log in',
+};
 
 function LoginPage() {
   return (
