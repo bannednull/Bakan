@@ -1,6 +1,6 @@
 import ActivateLink from '@/components/activate-link';
 import Logo from '@/components/logo';
-import { Home, NotebookPen } from 'lucide-react';
+import { Home, NotebookPen, Sparkles } from 'lucide-react';
 
 const routes = [
   {
@@ -12,6 +12,11 @@ const routes = [
     title: 'Blog',
     path: '/dashboard/blog',
     Icon: <NotebookPen className="size-5" strokeWidth={1.2} />,
+  },
+  {
+    title: 'Chat',
+    path: '/dashboard/chat',
+    Icon: <Sparkles className="size-5" strokeWidth={1.2} />,
   },
 ];
 
