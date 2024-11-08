@@ -1,6 +1,6 @@
 import { prisma } from '@/lib/prisma';
 import { columns } from '@dashboard/blog/_components/columns';
-import { DataTable } from '@dashboard/blog/_components/data-table';
+import WrapperTable from '@dashboard/blog/_components/wrapper-table';
 import { searchParamsCache } from '@dashboard/blog/searchParams';
 import { Prisma } from '@prisma/client';
 
@@ -29,7 +29,9 @@ async function BlogList() {
     prisma.blog.count({ where: whereCondition }),
   ]);
 
-  return <DataTable columns={columns} data={blogs} totalItems={totalPages} pageSize={pageSize} />;
+  return (
+    <WrapperTable columns={columns} data={blogs} totalItems={totalPages} pageSize={pageSize} />
+  );
 }
 
 export default BlogList;
