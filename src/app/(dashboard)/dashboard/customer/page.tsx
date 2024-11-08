@@ -2,16 +2,16 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import Header from '@dashboard/_components/header';
 import Heading from '@dashboard/_components/heading';
 
-function IaPage() {
+function CustomerPage() {
   return (
     <ScrollArea className="h-full">
-      <Header title="Chat" />
+      <Header title="Customers" />
 
       <div className="px-8 py-4">
-        <Heading title="Chat" description="Intelligent Assistant" />
+        <Heading title="Customers" description="Manage your customers" />
       </div>
     </ScrollArea>
   );
 }
 
-export default IaPage;
+export default CustomerPage;
