@@ -9,7 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { Plus } from 'lucide-react';
+import { PlusCircle } from 'lucide-react';
 import FormBlog from '@dashboard/blog/_components/form-blog';
 import { blogStore } from '@/lib/store/blog';
 import { useShallow } from 'zustand/shallow';
@@ -30,8 +30,8 @@ function UpsertBlog() {
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogTrigger asChild>
-        <Button size="sm" variant="secondary" onClick={handleOpen}>
-          <Plus className="size-4" />
+        <Button variant="secondary" onClick={handleOpen}>
+          <PlusCircle className="size-4" />
           Add Post
         </Button>
       </DialogTrigger>

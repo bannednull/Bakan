@@ -109,9 +109,7 @@ function FormBlog({ close }: { close?: (open: boolean) => void }) {
 
         <div className="flex items-center justify-end gap-2">
           <DialogClose asChild>
-            <Button size="sm" variant="outline">
-              Cancel
-            </Button>
+            <Button variant="outline">Cancel</Button>
           </DialogClose>
           <Button size="sm" type="submit">
             {form.formState.isSubmitting && <LoaderCircle className="mr-2 h-5 w-5 animate-spin" />}

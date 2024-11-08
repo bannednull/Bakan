@@ -45,6 +45,7 @@ async function Profile() {
         </DropdownMenuItem>
         <DropdownMenuItem>
           <form
+            className="w-full"
             action={async () => {
               'use server';
               await signOut();
