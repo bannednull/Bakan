@@ -12,7 +12,7 @@ function DashboardPage() {
     <ScrollArea className="h-full">
       <Header />
 
-      <div className="px-8 py-4">
+      <div className="px-6 py-4">
         <Heading title="Dashboard" description="Welcome to your dashboard" />
       </div>
     </ScrollArea>

@@ -6,7 +6,7 @@ import Header from '@dashboard/_components/header';
 import ChangePassword from '@dashboard/profile/_components/change-password';
 import { notFound } from 'next/navigation';
 import dayjs from 'dayjs';
-import pricing from '../../../../../pricing.json';
+import pricing from '@/../pricing.json';
 import Heading from '@dashboard/_components/heading';
 import { formatAmount } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -96,7 +96,7 @@ async function ProfilePage() {
             </TabsList>
             <div className="flex-1 px-6 py-2">
               <TabsContent value="account" className="h-full">
-                <h1>Account</h1>
+                <Heading title="Account" description="Your account details" />
               </TabsContent>
 
               <TabsContent value="billing" className="h-full">
@@ -128,7 +128,7 @@ async function ProfilePage() {
               </TabsContent>
 
               <TabsContent value="password" className="h-full">
-                <h1 className="mb-4 text-xl font-bold">Change password</h1>
+                <Heading title="Change password" description="Update your password" />
                 <ChangePassword />
               </TabsContent>
             </div>
