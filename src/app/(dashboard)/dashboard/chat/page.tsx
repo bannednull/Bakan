@@ -1,6 +1,7 @@
 import { ScrollArea } from '@/components/ui/scroll-area';
 import Header from '@dashboard/_components/header';
 import Heading from '@dashboard/_components/heading';
+import Chat from '@dashboard/chat/_components/chat';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -14,6 +15,8 @@ function IaPage() {
 
       <div className="px-6 py-4">
         <Heading title="Chat" description="Intelligent Assistant" />
+
+        <Chat />
       </div>
     </ScrollArea>
   );
