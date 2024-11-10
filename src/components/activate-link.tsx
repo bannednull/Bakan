@@ -9,7 +9,9 @@ function ActivateLink(props: { path: string; children: React.ReactNode; classNam
 
   return (
     <Link
-      className={cn(props.className, { 'font-bold text-blue-500': pathname === props.path })}
+      className={cn(props.className, {
+        'bg-accent/50 font-bold text-blue-500': pathname === props.path,
+      })}
       href={props.path}
     >
       {props.children}
