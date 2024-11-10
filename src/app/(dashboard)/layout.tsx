@@ -35,15 +35,15 @@ const routes = [
 
 function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
-    <main className="grid h-screen grid-cols-[225px_1fr]">
-      <aside className="flex flex-col gap-4 border-r p-4">
+    <main className="grid h-screen grid-cols-[235px_1fr]">
+      <aside className="flex flex-col gap-4 border-r px-5 py-4">
         <div className="mb-3 flex items-center gap-2">
           <Logo className="size-5" />
           <h1 className="text-xl font-bold">Bakan</h1>
         </div>
 
         <nav className="flex h-full flex-grow flex-col justify-between">
-          <ul className="flex flex-col gap-1.5 text-sm">
+          <ul className="-mx-1 flex flex-col gap-1.5 text-sm">
             {routes.map(({ title, path, Icon, separator }, index) => (
               <li key={index} className={cn(separator && 'mt-1 border-t pt-2')}>
                 <ActivateLink

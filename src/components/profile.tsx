@@ -38,8 +38,8 @@ async function Profile({ isSidebar = false }: Props) {
           </Button>
         ) : (
           <Button
-            className="flex h-12 w-full items-center gap-2 truncate text-sm text-muted-foreground hover:bg-accent/50 data-[state=open]:bg-accent/50"
-            variant="outline"
+            className="flex w-full items-center justify-start gap-2 truncate p-0 text-sm text-muted-foreground hover:bg-transparent data-[state=open]:text-foreground"
+            variant="ghost"
           >
             <small className="rounded-md bg-accent p-1.5 text-foreground">{email}</small>{' '}
             {session.user.email}
