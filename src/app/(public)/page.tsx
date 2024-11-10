@@ -1,4 +1,5 @@
 import Pricing from '@/app/_components/pricing';
+import Logo from '@/components/logo';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Github } from 'lucide-react';
@@ -48,6 +49,30 @@ export default function Home() {
 
         <Pricing />
       </section>
+
+      <footer className="grid grid-cols-[1fr_1fr_1fr] gap-6 border-t py-10">
+        <div>
+          <div className="flex items-center gap-2">
+            <Logo className="size-6" /> <h3 className="text-xl">Bakan</h3>
+          </div>
+          <p className="text-muted-foreground">
+            © 2024 <br />
+            Designed & built by <a href="https://twitter.com/bannednull">BannedNull</a>
+          </p>
+        </div>
+
+        <nav className="flex flex-col gap-2">
+          <Link href="/blog">Blog</Link>
+          <Link href="#">Link 01</Link>
+          <Link href="#">Link 02</Link>
+        </nav>
+
+        <nav className="flex flex-col gap-2">
+          <Link href="#">Link 01</Link>
+          <Link href="#">Link 02</Link>
+          <Link href="#">Link 03</Link>
+        </nav>
+      </footer>
     </>
   );
 }
