@@ -30,7 +30,7 @@ async function Profile({ isSidebar = false }: Props) {
       <DropdownMenuTrigger asChild>
         {!isSidebar ? (
           <Button
-            className="bg-accent/50 font-bold text-foreground hover:bg-accent"
+            className="font-bold text-foreground hover:bg-accent data-[state=open]:bg-accent"
             size="sm"
             variant="outline"
           >
