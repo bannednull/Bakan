@@ -21,7 +21,7 @@ async function HomeHeader() {
   const session = await auth();
 
   return (
-    <header className="py-4">
+    <header className="fixed left-0 top-0 z-50 w-full py-4 backdrop-blur-md">
       <nav className="mx-auto flex max-w-screen-lg items-center justify-between gap-4">
         <Logo className="size-6" /> <h1 className="text-xl font-bold">Bakan</h1>
         <NavigationMenu className="mx-auto">
@@ -29,9 +29,7 @@ async function HomeHeader() {
             {routes.map((item) => (
               <NavigationMenuItem key={item.title}>
                 <Link href={item.href} legacyBehavior passHref>
-                  <NavigationMenuLink className="text-muted-foreground hover:text-foreground">
-                    {item.title}
-                  </NavigationMenuLink>
+                  <NavigationMenuLink>{item.title}</NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
             ))}

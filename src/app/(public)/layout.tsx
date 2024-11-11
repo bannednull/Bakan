@@ -5,7 +5,7 @@ function LayoutHome({ children }: { children: React.ReactNode }) {
     <>
       <HomeHeader />
 
-      <main className="mx-auto max-w-screen-lg">{children}</main>
+      <main className="mx-auto max-w-screen-lg pt-20">{children}</main>
     </>
   );
 }
