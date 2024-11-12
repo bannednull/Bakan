@@ -12,36 +12,34 @@ import {
 import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAction } from 'next-safe-action/hooks';
-import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { LoaderCircle } from 'lucide-react';
-import { signinSchema } from '../validate';
-import { loginAction } from '../actions';
 import Link from 'next/link';
+import { forgotSchema } from '@/app/(auth)/forgot-password/validate';
+import { forgotAction } from '@/app/(auth)/forgot-password/action';
+import { toast } from 'sonner';
 
-function FormSignIn() {
-  const form = useForm<z.infer<typeof signinSchema>>({
-    resolver: zodResolver(signinSchema),
+function FormForgot() {
+  const form = useForm<z.infer<typeof forgotSchema>>({
+    resolver: zodResolver(forgotSchema),
     defaultValues: {
       email: '',
-      password: '',
     },
   });
 
-  const router = useRouter();
-
-  const { executeAsync } = useAction(loginAction, {
+  const { executeAsync } = useAction(forgotAction, {
     onSuccess({ data }) {
       if (data && 'error' in data) {
         form.setError('root', { message: data.error });
         return;
       }
-      router.push('/');
+      toast.success('Password reset link sent to your email');
+      form.reset();
     },
   });
 
-  const onSubmit = async (data: z.infer<typeof signinSchema>) => await executeAsync(data);
+  const onSubmit = async (data: z.infer<typeof forgotSchema>) => await executeAsync(data);
 
   return (
     <Form {...form}>
@@ -59,27 +57,6 @@ function FormSignIn() {
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <div className="flex justify-between">
-                <FormLabel>Password</FormLabel>
-                <Link
-                  className="text-xs text-blue-500 hover:text-blue-700"
-                  href={'/forgot-password'}
-                >
-                  Forgot password?
-                </Link>
-              </div>
-              <FormControl>
-                <Input {...field} type="password" placeholder="****" />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
 
         {form.formState.errors.root && (
           <p className="text-red-500">{form.formState.errors.root.message}</p>
@@ -87,13 +64,13 @@ function FormSignIn() {
 
         <Button className="w-full" size="sm" type="submit">
           {form.formState.isSubmitting && <LoaderCircle className="mr-2 h-5 w-5 animate-spin" />}
-          Sign in
+          Reset Password
         </Button>
 
         <p className="text-sm text-muted-foreground">
-          No account?{' '}
-          <Link className="text-blue-500 hover:text-blue-700" href="/register">
-            Sign Up Now
+          Remember your password?{' '}
+          <Link className="text-blue-500 hover:text-blue-700" href="/login">
+            Sign In
           </Link>
         </p>
       </form>
@@ -101,4 +78,4 @@ function FormSignIn() {
   );
 }
 
-export default FormSignIn;
+export default FormForgot;
