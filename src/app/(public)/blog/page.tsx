@@ -12,7 +12,16 @@ export const metadata: Metadata = {
 };
 
 async function PublicBlogPage() {
-  const blogs = await prisma.blog.findMany();
+  const blogs = await prisma.blog.findMany({
+    where: {
+      User: {
+        role: 'admin',
+      },
+    },
+    include: {
+      User: { select: { role: true } },
+    },
+  });
 
   return (
     <>

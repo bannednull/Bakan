@@ -1,9 +1,11 @@
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { auth } from '@/lib/auth';
 import Header from '@dashboard/_components/header';
 import Heading from '@dashboard/_components/heading';
 import CustomerList from '@dashboard/customer/_components/customer-list';
 import { searchParamsCache } from '@dashboard/customer/searchParams';
 import type { Metadata } from 'next';
+import { redirect } from 'next/navigation';
 import { SearchParams } from 'nuqs/server';
 import { Suspense } from 'react';
 
@@ -16,6 +18,12 @@ type PageProps = {
 };
 
 async function CustomerPage({ searchParams }: PageProps) {
+  const session = await auth();
+
+  if (session?.user.role !== 'admin') {
+    return redirect('/dashboard');
+  }
+
   searchParamsCache.parse(await searchParams);
   return (
     <ScrollArea className="h-full">
