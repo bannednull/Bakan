@@ -29,6 +29,7 @@
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-switch": "^1.1.1",
     "@radix-ui/react-tabs": "^1.1.1",
+    "@react-email/components": "^0.0.28",
     "@stripe/stripe-js": "^4.9.0",
     "@t3-oss/env-nextjs": "^0.11.1",
     "@tanstack/react-table": "^8.20.5",
@@ -45,6 +46,7 @@
     "next-safe-action": "^7.9.9",
     "next-themes": "^0.3.0",
     "nextjs-toploader": "^3.7.15",
+    "nodemailer": "^6.9.16",
     "nuqs": "^2.1.1",
     "react": "^19.0.0-rc-5c56b873-20241107",
     "react-dom": "^19.0.0-rc-5c56b873-20241107",
@@ -61,6 +63,7 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
+    "@types/nodemailer": "^6.4.16",
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
     "@typescript-eslint/eslint-plugin": "^8.12.2",
