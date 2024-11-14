@@ -1,3 +1,4 @@
+import Google from '@/components/brands/google';
 import { Button } from '@/components/ui/button';
 import { signIn } from '@/lib/auth';
 
@@ -9,7 +10,9 @@ function LoginGoogle() {
         await signIn('google');
       }}
     >
-      <Button type="submit">Signin with Google</Button>
+      <Button className="w-full" size="sm" type="submit" variant="outline">
+        <Google className="size-6" /> Sign in with Google
+      </Button>
     </form>
   );
 }
