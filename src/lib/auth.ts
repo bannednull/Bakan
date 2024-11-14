@@ -1,9 +1,11 @@
 import NextAuth, { Session } from 'next-auth';
 import type { JWT } from 'next-auth/jwt';
 import Credentials from 'next-auth/providers/credentials';
+import Google from 'next-auth/providers/google';
+import { PrismaAdapter } from '@auth/prisma-adapter';
 import { z } from 'zod';
-import { prisma } from './prisma';
 import { compare } from 'bcryptjs';
+import { prisma } from '@/lib/prisma';
 
 const credentialsSchema = z.object({
   email: z.string().email().min(1, 'Email is required'),
@@ -11,6 +13,7 @@ const credentialsSchema = z.object({
 });
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  adapter: PrismaAdapter(prisma),
   providers: [
     Credentials({
       credentials: {
@@ -35,6 +38,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         };
       },
     }),
+    Google,
   ],
   pages: {
     signIn: '/login',

@@ -13,6 +13,8 @@ export const env = createEnv({
     SMTP_HOST: z.string().min(1),
     SMTP_USER: z.string().min(1),
     SMTP_PASSWORD: z.string().min(1),
+    AUTH_GOOGLE_ID: z.string().min(1),
+    AUTH_GOOGLE_SECRET: z.string().min(1),
     NODE_ENV: z.enum(['development', 'production', 'test']),
   },
 
@@ -34,6 +36,8 @@ export const env = createEnv({
     SMTP_HOST: process.env.SMTP_HOST,
     SMTP_USER: process.env.SMTP_USER,
     SMTP_PASSWORD: process.env.SMTP_PASSWORD,
+    AUTH_GOOGLE_ID: process.env.AUTH_GOOGLE_ID,
+    AUTH_GOOGLE_SECRET: process.env.AUTH_GOOGLE_SECRET,
     NODE_ENV: process.env.NODE_ENV,
   },
 });

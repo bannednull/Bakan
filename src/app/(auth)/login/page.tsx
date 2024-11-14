@@ -1,4 +1,5 @@
 import FormSignIn from '@/app/(auth)/login/_components/form-signin';
+import LoginGoogle from '@/app/(auth)/login/_components/login-google';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -9,6 +10,7 @@ function LoginPage() {
   return (
     <>
       <h1 className="mb-4 text-2xl font-bold">Log in to your account</h1>
+      <LoginGoogle />
       <FormSignIn />
     </>
   );
