@@ -102,34 +102,42 @@ async function ProfilePage() {
               <TabsContent value="billing" className="h-full">
                 <Heading title="Billing" description="Your current subscription details" />
 
-                <div className="mt-4 border-b py-2">
-                  {infoUser.Subscription.map((item) => {
-                    const period = item.period === 'month' ? 'monthly' : 'yearly';
-                    const plan = getPlanById(item.plan!);
-                    if (!plan) return null;
-                    return (
-                      <div key={item.id} className="flex items-start justify-between">
-                        <div>
-                          <h3 className="text-lg font-bold">{plan.name}</h3>
-                          <p className="font-bold text-muted-foreground">
-                            {formatAmount(String(plan.price[period].value))} / {period}
-                          </p>
-                          <span className="text-xs text-muted-foreground">
-                            {calculateRemainingTime(item.endDate)}
-                          </span>
+                {infoUser.Subscription.length === 0 ? (
+                  <div className="mt-4 text-center text-muted-foreground">
+                    You don&apos;t have any active subscriptions.
+                  </div>
+                ) : (
+                  <div className="mt-4 border-b py-2">
+                    {infoUser.Subscription.map((item) => {
+                      const period = item.period === 'month' ? 'monthly' : 'yearly';
+                      const plan = getPlanById(item.plan!);
+                      if (!plan) return null;
+                      return (
+                        <div key={item.id} className="flex items-start justify-between">
+                          <div>
+                            <h3 className="text-lg font-bold">{plan.name}</h3>
+                            <p className="font-bold text-muted-foreground">
+                              {formatAmount(String(plan.price[period].value))} / {period}
+                            </p>
+                            <span className="text-xs text-muted-foreground">
+                              {calculateRemainingTime(item.endDate)}
+                            </span>
+                          </div>
+                          <Button size="sm" variant="outline">
+                            Cancel subscription
+                          </Button>
                         </div>
-                        <Button size="sm" variant="outline">
-                          Cancel subscription
-                        </Button>
-                      </div>
-                    );
-                  })}
-                </div>
+                      );
+                    })}
+                  </div>
+                )}
               </TabsContent>
 
               <TabsContent value="password" className="h-full">
                 <Heading title="Change password" description="Update your password" />
-                <ChangePassword />
+                <div className="mt-4">
+                  <ChangePassword />
+                </div>
               </TabsContent>
             </div>
           </Tabs>
