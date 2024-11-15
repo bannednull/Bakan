@@ -7,12 +7,15 @@ import { Book, CreditCard, Play, Users2 } from 'lucide-react';
 import Github from '@/components/brands/github';
 import Discord from '@/components/brands/discord';
 import X from '@/components/brands/x';
+import { auth } from '@/lib/auth';
 
 export const metadata: Metadata = {
   title: 'Dashboard',
 };
 
 async function DashboardPage() {
+  const session = await auth();
+
   const [subscriptionCount, usersCount] = await prisma.$transaction([
     prisma.subscription.count({
       where: {
@@ -29,27 +32,25 @@ async function DashboardPage() {
       <div className="px-6 py-4">
         <Heading title="Dashboard" description="Welcome to your dashboard" />
 
-        <div className="mt-4 grid grid-cols-4 gap-4">
-          <div className="rounded-lg border bg-accent/40 p-4">
-            <div className="flex items-center gap-2 text-sm">
-              <CreditCard color="#3b82f6" className="size-8 rounded-full bg-background p-1.5" />{' '}
-              <span>Total Subscriptions</span>
+        {session?.user.role === 'admin' && (
+          <div className="mt-4 grid grid-cols-4 gap-4">
+            <div className="rounded-lg border bg-accent/40 p-4">
+              <div className="flex items-center gap-2 text-sm">
+                <CreditCard color="#3b82f6" className="size-8 rounded-full bg-background p-1.5" />{' '}
+                <span>Total Subscriptions</span>
+              </div>
+              {subscriptionCount}
             </div>
-            {subscriptionCount}
-          </div>
 
-          <div className="rounded-lg border bg-accent/40 p-4">
-            <div className="flex items-center gap-2 text-sm">
-              <Users2 color="#3b82f6" className="size-8 rounded-full bg-background p-1.5" />{' '}
-              <span>Total Users</span>
+            <div className="rounded-lg border bg-accent/40 p-4">
+              <div className="flex items-center gap-2 text-sm">
+                <Users2 color="#3b82f6" className="size-8 rounded-full bg-background p-1.5" />{' '}
+                <span>Total Users</span>
+              </div>
+              {usersCount}
             </div>
-            {usersCount}
           </div>
-        </div>
-
-        <div className="my-3 grid grid-cols-[250px_1fr] border-y py-4">
-          <p className="text-muted-foreground">Your API KEY</p>
-        </div>
+        )}
 
         <div className="mt-4 grid grid-cols-3 gap-3">
           <div className="col-span-2 space-y-3">
