@@ -10,6 +10,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import DeletePost from '@dashboard/blog/_components/delete-post';
 import PreviewPost from '@dashboard/blog/_components/preview-post';
 import type { Metadata } from 'next';
+import TableLoader from '@/components/table-loader';
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -34,7 +35,7 @@ async function BlogPage({ searchParams }: PageProps) {
             <UpsertBlog />
           </div>
         </div>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<TableLoader />}>
           <BlogList />
         </Suspense>
       </div>

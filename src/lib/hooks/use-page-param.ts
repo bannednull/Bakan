@@ -1,13 +1,18 @@
+'use client';
+
+import { searchParams } from '@dashboard/blog/searchParams';
 import { useQueryState } from 'nuqs';
-import { parseAsInteger } from 'nuqs/server';
+import { useTransition } from 'react';
 
 function usePage() {
+  const [isLoading, startTransition] = useTransition();
   const [currentPage, setCurrentPage] = useQueryState(
     'page',
-    parseAsInteger.withOptions({ shallow: false }).withDefault(1),
+    searchParams.page.withOptions({ startTransition, shallow: false }).withDefault(1),
   );
 
   return {
+    isLoading,
     currentPage,
     setCurrentPage,
   };

@@ -11,7 +11,7 @@ export const searchParamsCache = createSearchParamsCache(searchParams);
 
 //hooks
 export const useFilteredBlogs = () => {
-  const { currentPage, setCurrentPage } = usePage();
+  const { isLoading, currentPage, setCurrentPage } = usePage();
 
   const [searchQuery, setSearchQuery] = useQueryState(
     'q',
@@ -19,6 +19,7 @@ export const useFilteredBlogs = () => {
   );
 
   return {
+    isLoading,
     currentPage,
     setCurrentPage,
     searchQuery,

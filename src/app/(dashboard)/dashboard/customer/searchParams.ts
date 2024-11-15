@@ -9,9 +9,10 @@ export const searchParamsCache = createSearchParamsCache(searchParams);
 
 //hooks
 export const useFilteredCustomer = () => {
-  const { currentPage, setCurrentPage } = usePage();
+  const { isLoading, currentPage, setCurrentPage } = usePage();
 
   return {
+    isLoading,
     currentPage,
     setCurrentPage,
   };

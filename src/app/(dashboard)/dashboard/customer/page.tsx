@@ -1,3 +1,4 @@
+import TableLoader from '@/components/table-loader';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { auth } from '@/lib/auth';
 import Header from '@dashboard/_components/header';
@@ -33,7 +34,7 @@ async function CustomerPage({ searchParams }: PageProps) {
         <Heading title="Customers" description="Manage your customers" />
       </div>
 
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<TableLoader />}>
         <CustomerList />
       </Suspense>
     </ScrollArea>

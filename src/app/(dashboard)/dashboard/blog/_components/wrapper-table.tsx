@@ -13,12 +13,13 @@ interface DataTableProps<TData, TValue> {
 
 function WrapperTable<TData, TValue>(props: DataTableProps<TData, TValue>) {
   const { columns, data, totalItems, pageSize } = props;
-  const { currentPage, setCurrentPage } = useFilteredBlogs();
+  const { isLoading, currentPage, setCurrentPage } = useFilteredBlogs();
 
   return (
     <DataTable
       columns={columns}
       data={data}
+      isLoading={isLoading}
       totalItems={totalItems}
       pageSize={pageSize}
       currentPage={currentPage}
