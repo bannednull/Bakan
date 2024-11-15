@@ -6,13 +6,13 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const formatAmount = (amount: string) => {
-  const num = parseInt(amount);
+  const num = parseFloat(amount);
 
   // Format the amount as a dollar amount
   const formatted = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
-    maximumFractionDigits: 0,
+    maximumFractionDigits: 2,
   }).format(num);
 
   return formatted;

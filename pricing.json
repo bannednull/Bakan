@@ -1,75 +1,22 @@
 [
   {
-    "name": "Free",
-    "description": "For individuals",
+    "name": "Premium Plan",
+    "description": "Ideal for content creators.",
     "features": [
-      "Up to 3 users",
-      "1 GB of storage",
-      "Email support (48 hours response)",
-      "Basic integrations (Google, Slack)",
-      "Limited API access"
+      "Unlimited access to premium articles",
+      "Customizable dashboard",
+      "Content creation assistant",
+      "Partial API access"
     ],
     "highlight": false,
     "price": {
       "monthly": {
-        "id": "price_1QDcBOKJikXCgDQQWQRqB3dP",
-        "value": 0
+        "id": "price_1QLUYyKJikXCgDQQsuLA0cPo",
+        "value": 9.99
       },
       "yearly": {
-        "id": "price_1QDcI7KJikXCgDQQ5YEaJfq0",
-        "value": 0
-      }
-    }
-  },
-  {
-    "name": "Premium",
-    "description": "For small teams",
-    "features": [
-      "Unlimited users",
-      "50 GB of storage",
-      "Priority support (24 hours response)",
-      "Advanced integrations (Zapier, Salesforce)",
-      "Up to 5 task automations",
-      "Partial API access",
-      "Customizable dashboards",
-      "Weekly backups"
-    ],
-    "highlight": true,
-    "price": {
-      "monthly": {
-        "id": "price_1QDcDMKJikXCgDQQL1i4e8pz",
-        "value": 109
-      },
-      "yearly": {
-        "id": "price_1QG8o6KJikXCgDQQc4f4o4YR",
-        "value": 1308
-      }
-    }
-  },
-  {
-    "name": "Enterprise",
-    "description": "For industry leaders",
-    "features": [
-      "Unlimited users",
-      "Unlimited storage",
-      "24/7 support with dedicated management",
-      "Customized integrations",
-      "Unlimited automations",
-      "Full and optimized API access",
-      "Consulting and training services",
-      "Daily backups with instant restore",
-      "Advanced security (SSO, audits)",
-      "Access to real-time reports"
-    ],
-    "highlight": false,
-    "price": {
-      "monthly": {
-        "id": "price_1QDcErKJikXCgDQQRXtJ8j0B",
-        "value": 229
-      },
-      "yearly": {
-        "id": "price_1QG8mvKJikXCgDQQc3WBZCO4",
-        "value": 2748
+        "id": "price_1QLUZnKJikXCgDQQN5C5KLjp",
+        "value": 119
       }
     }
   }

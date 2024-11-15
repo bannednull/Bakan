@@ -1,6 +1,6 @@
 'use client';
 
-import { Check } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
 import pricing from '../../../pricing.json';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
@@ -36,13 +36,25 @@ function Pricing() {
 
   return (
     <>
-      <div className="flex items-center justify-center gap-2 py-4 text-lg">
-        <strong className={isMonthly ? 'text-primary' : 'text-muted-foreground'}>Monthly</strong>
-        <Switch checked={!isMonthly} onCheckedChange={handleSwitchChange} />
-        <strong className={!isMonthly ? 'text-primary' : 'text-muted-foreground'}>Annually</strong>
-      </div>
+      <div className="grid grid-cols-2 gap-6">
+        <div>
+          <h3 className="my-4 text-balance text-5xl font-bold">Join our premium community</h3>
+          <p className="text-balance text-muted-foreground">
+            Subscribe to access exclusive blog content, get a personal dashboard where you can
+            create your own articles and use a virtual assistant that will help you generate quality
+            content.
+          </p>
 
-      <div className="mt-4 grid grid-cols-3 gap-4">
+          <div className="flex items-center gap-2 py-4 text-lg">
+            <strong className={isMonthly ? 'text-primary' : 'text-muted-foreground'}>
+              Monthly
+            </strong>
+            <Switch checked={!isMonthly} onCheckedChange={handleSwitchChange} />
+            <strong className={!isMonthly ? 'text-primary' : 'text-muted-foreground'}>
+              Annually
+            </strong>
+          </div>
+        </div>
         {pricing.map((item, index) => {
           const currentPrice = isMonthly ? item.price.monthly.value : item.price.yearly.value;
           const currentPriceId = isMonthly ? item.price.monthly.id : item.price.yearly.id;
@@ -50,12 +62,13 @@ function Pricing() {
             <div
               key={index}
               className={cn(
-                'flex flex-1 flex-col rounded-lg border bg-accent/30 p-6',
-                item.highlight && 'border-yellow-300 dark:border-yellow-500',
+                'relative flex flex-1 flex-col overflow-hidden rounded-lg border bg-accent/30 p-6',
+                item.highlight && 'border-blue-300 dark:border-sky-800',
               )}
             >
+              <div className="absolute -bottom-10 -right-14 -z-10 h-[200px] w-[320px] bg-[linear-gradient(180deg,transparent_0,transparent),radial-gradient(circle_at_60%_60%,rgba(46,134,193,.2)_0,transparent_60%)]" />
               {item.highlight && (
-                <span className="-ml-4 -mt-9 mb-4 inline w-[80px] rounded-lg bg-yellow-500 px-2 py-1 text-center text-xs text-black">
+                <span className="-ml-4 -mt-9 mb-4 inline w-[80px] rounded-lg bg-sky-800 px-2 py-1 text-center text-xs text-black">
                   Popular
                 </span>
               )}
@@ -64,12 +77,15 @@ function Pricing() {
                 <span className="text-muted-foreground">{item.description}</span>
               </div>
 
-              <h5 className="mt-4 text-center text-3xl font-bold">
+              <h5 className="mt-4 text-center text-4xl font-bold">
                 {formatAmount(String(currentPrice))}
+                <span className="text-sm text-muted-foreground">
+                  {isMonthly ? '/month' : '/year'}
+                </span>
               </h5>
 
               <Button className="my-4" onClick={() => handleCheckout(currentPriceId)}>
-                Get Started
+                Get Started <ArrowRight />
               </Button>
 
               <ul className="flex flex-col gap-2 text-sm text-muted-foreground">
