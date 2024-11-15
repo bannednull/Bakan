@@ -1,21 +1,21 @@
+import Features from '@/app/_components/features';
 import Pricing from '@/app/_components/pricing';
-import Logo from '@/components/logo';
+import Github from '@/components/brands/github';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { Github } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Home() {
   return (
     <>
-      <section className="py-24 text-center">
+      <section className="py-16 text-center">
         <div className="inline w-auto rounded-full border px-4 py-1.5 text-xs text-muted-foreground shadow-sm">
           Project Open Source SaaS Starter Kit
         </div>
         <div className="relative mx-auto mt-4 max-w-3xl">
           <div className="pointer-events-none absolute inset-0 -top-2 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_70%,black)] dark:[mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
           <div className="absolute -top-2 bottom-0 left-0 right-0 -z-10 bg-[linear-gradient(to_right,#7c7c7c2e_1px,transparent_1px),linear-gradient(to_bottom,#7c7c7c2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_100%_70%_at_50%_0%,#000_100%,transparent_100%)]" />
-          <h1 className="text-center text-7xl font-extrabold">
+          <h1 className="text-center text-8xl font-extrabold">
             Get Your{' '}
             <span className="bg-gradient-to-r from-sky-500 to-indigo-500 bg-clip-text text-transparent">
               SaaS
@@ -33,46 +33,22 @@ export default function Home() {
             href="https://github.com/bannednull/Bakan"
             className={cn(buttonVariants({ variant: 'outline' }), 'px-10')}
           >
-            <Github /> Start On Github (~1)
+            <Github /> Start On Github
           </Link>
         </div>
       </section>
 
-      <section className="py-24">
-        <div className="mx-auto mb-4 max-w-xl text-center">
-          <h3 className="text-center text-3xl font-extrabold">Pricing</h3>
-          <p className="text-muted-foreground">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore iste nam fugiat
-            magnam eveniet
-          </p>
-        </div>
-
-        <Pricing />
+      <section className="border-plus border-t px-6 py-16">
+        <h3 className="text-center text-4xl font-bold">Features</h3>
+        <p className="mb-10 text-center text-sm text-muted-foreground">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        </p>
+        <Features />
       </section>
 
-      <footer className="grid grid-cols-[1fr_1fr_1fr] gap-6 border-t py-10">
-        <div>
-          <div className="flex items-center gap-2">
-            <Logo className="size-6" /> <h3 className="text-xl">Bakan</h3>
-          </div>
-          <p className="text-muted-foreground">
-            © 2024 <br />
-            Designed & built by <a href="https://twitter.com/bannednull">BannedNull</a>
-          </p>
-        </div>
-
-        <nav className="flex flex-col gap-2">
-          <Link href="/blog">Blog</Link>
-          <Link href="#">Link 01</Link>
-          <Link href="#">Link 02</Link>
-        </nav>
-
-        <nav className="flex flex-col gap-2">
-          <Link href="#">Link 01</Link>
-          <Link href="#">Link 02</Link>
-          <Link href="#">Link 03</Link>
-        </nav>
-      </footer>
+      <section className="border-plus relative border-t px-6 py-16">
+        <Pricing />
+      </section>
     </>
   );
 }
