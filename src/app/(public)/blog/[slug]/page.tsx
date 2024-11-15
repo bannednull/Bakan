@@ -11,7 +11,7 @@ async function BlogSlugPage({ params }: { params: Promise<{ slug: string }> }) {
   }
 
   return (
-    <div className="mx-auto mt-14 max-w-screen-sm">
+    <div className="mx-auto max-w-screen-sm pt-10">
       <img src="/default.jpg" alt={blog.title} className="h-[320px] w-full rounded-lg border" />
       <h1 className="my-2 text-3xl">{blog.title}</h1>
 

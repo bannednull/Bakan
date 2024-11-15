@@ -25,14 +25,16 @@ async function PublicBlogPage() {
 
   return (
     <>
-      <div className="my-4 space-y-2 rounded-xl bg-accent/30 p-10">
-        <h1 className="text-4xl">Blog</h1>
-        <h2 className="text-xl text-muted-foreground">
-          Explore our latest news, announcements, and articles.
-        </h2>
+      <div className="p-6">
+        <div className="space-y-2 rounded-xl bg-accent/30 p-10">
+          <h1 className="text-4xl">Blog</h1>
+          <h2 className="text-xl text-muted-foreground">
+            Explore our latest news, announcements, and articles.
+          </h2>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="border-plus grid grid-cols-1 gap-4 border-t px-6 py-10 md:grid-cols-2 lg:grid-cols-3">
         {blogs.map((blog) => (
           <div key={blog.id}>
             <Link className="hover:underline" href={`/blog/${blog.id}-${createSlug(blog.title)}`}>
