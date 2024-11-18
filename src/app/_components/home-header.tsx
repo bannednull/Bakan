@@ -22,7 +22,7 @@ async function HomeHeader() {
 
   return (
     <header className="sticky top-0 z-50 w-full backdrop-blur-md">
-      <nav className="mx-auto flex max-w-screen-lg items-center justify-between gap-4 border-x px-6 py-4">
+      <nav className="mx-auto flex max-w-screen-lg items-center justify-between gap-4 border-x px-8 py-4">
         <Logo className="size-6" /> <h1 className="text-xl font-bold">Bakan</h1>
         <NavigationMenu className="mx-auto">
           <NavigationMenuList className="gap-4">

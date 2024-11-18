@@ -9,7 +9,7 @@ function LayoutHome({ children }: { children: React.ReactNode }) {
 
       <main className="mx-auto max-w-screen-lg border-x">
         {children}
-        <footer className="border-plus relative grid grid-cols-[1fr_1fr_1fr] gap-6 border-y px-6 py-10">
+        <footer className="border-plus relative grid grid-cols-[1fr_1fr_1fr] gap-6 border-t px-8 py-10">
           <div className="absolute"></div>
           <div>
             <div className="flex items-center gap-2">

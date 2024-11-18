@@ -1,3 +1,4 @@
+import ScrollAnimate from '@/app/_components/scroll-animate';
 import { prisma } from '@/lib/prisma';
 import { createSlug } from '@/lib/utils';
 import dayjs from 'dayjs';
@@ -36,7 +37,7 @@ async function PublicBlogPage() {
 
       <div className="border-plus grid grid-cols-1 gap-4 border-t px-6 py-10 md:grid-cols-2 lg:grid-cols-3">
         {blogs.map((blog) => (
-          <div key={blog.id}>
+          <ScrollAnimate key={blog.id}>
             <Link className="hover:underline" href={`/blog/${blog.id}-${createSlug(blog.title)}`}>
               <img
                 src="/default.jpg"
@@ -49,7 +50,7 @@ async function PublicBlogPage() {
               {dayjs().from(dayjs(blog?.createdAt))}
             </span>
             <p className="mt-2 line-clamp-3 text-muted-foreground">{blog.content}</p>
-          </div>
+          </ScrollAnimate>
         ))}
       </div>
     </>

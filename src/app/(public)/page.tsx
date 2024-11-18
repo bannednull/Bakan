@@ -38,7 +38,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-plus border-t px-6 py-16">
+      <section className="border-plus border-t px-8 py-16">
         <h3 className="text-center text-4xl font-bold">Features</h3>
         <p className="mb-10 text-center text-sm text-muted-foreground">
           Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -46,7 +46,7 @@ export default function Home() {
         <Features />
       </section>
 
-      <section className="border-plus relative border-t px-6 py-16">
+      <section className="border-plus relative border-t px-8 py-16">
         <Pricing />
       </section>
     </>
