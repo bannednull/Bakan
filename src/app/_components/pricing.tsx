@@ -10,6 +10,8 @@ import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { getStripe } from '@/lib/stripe/client';
 import { checkoutWithStripe } from '@/lib/stripe/server';
+import { AnimatePresence, motion } from 'framer-motion';
+import ScrollAnimate from './scroll-animate';
 
 function Pricing() {
   const [isMonthly, setIsMonthly] = useState(true);
@@ -37,7 +39,7 @@ function Pricing() {
   return (
     <>
       <div className="grid grid-cols-2 gap-6">
-        <div>
+        <ScrollAnimate>
           <h3 className="my-4 text-balance text-5xl font-bold">Join our premium community</h3>
           <p className="text-balance text-muted-foreground">
             Subscribe to access exclusive blog content, get a personal dashboard where you can
@@ -54,7 +56,7 @@ function Pricing() {
               Annually
             </strong>
           </div>
-        </div>
+        </ScrollAnimate>
         {pricing.map((item, index) => {
           const currentPrice = isMonthly ? item.price.monthly.value : item.price.yearly.value;
           const currentPriceId = isMonthly ? item.price.monthly.id : item.price.yearly.id;
@@ -76,13 +78,22 @@ function Pricing() {
                 <h4 className="text-xl font-bold">{item.name}</h4>
                 <span className="text-muted-foreground">{item.description}</span>
               </div>
+              <AnimatePresence mode="wait">
+                <motion.h5
+                  className="mt-4 text-center text-4xl font-bold"
+                  key={currentPrice}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {formatAmount(String(currentPrice))}
 
-              <h5 className="mt-4 text-center text-4xl font-bold">
-                {formatAmount(String(currentPrice))}
-                <span className="text-sm text-muted-foreground">
-                  {isMonthly ? '/month' : '/year'}
-                </span>
-              </h5>
+                  <span className="text-sm text-muted-foreground">
+                    {isMonthly ? '/month' : '/year'}
+                  </span>
+                </motion.h5>
+              </AnimatePresence>
 
               <Button className="my-4" onClick={() => handleCheckout(currentPriceId)}>
                 Get Started <ArrowRight />
