@@ -15,6 +15,7 @@ import Link from 'next/link';
 const routes = [
   { title: 'Home', href: '/' },
   { title: 'Blog', href: '/blog' },
+  { title: 'Docs', href: '/docs' },
 ];
 
 async function HomeHeader() {
