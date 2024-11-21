@@ -70,6 +70,7 @@
     "@typescript-eslint/eslint-plugin": "^8.12.2",
     "@typescript-eslint/parser": "^8.12.2",
     "eslint": "^8",
+    "eslint-config-next": "^15.0.3",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-tailwindcss": "^3.17.5",
