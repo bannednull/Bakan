@@ -1,12 +1,9 @@
 import ScrollAnimate from '@/app/_components/scroll-animate';
 import { prisma } from '@/lib/prisma';
 import { createSlug } from '@/lib/utils';
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-
-dayjs.extend(relativeTime);
+import { formatDistanceToNow } from 'date-fns';
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -47,7 +44,7 @@ async function PublicBlogPage() {
               <h3 className="my-2 text-xl font-bold">{blog.title}</h3>
             </Link>
             <span className="text-sm text-muted-foreground">
-              {dayjs().from(dayjs(blog?.createdAt))}
+              {formatDistanceToNow(blog?.createdAt)}
             </span>
             <p className="mt-2 line-clamp-3 text-muted-foreground">{blog.content}</p>
           </ScrollAnimate>

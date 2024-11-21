@@ -5,25 +5,28 @@ import { prisma } from '@/lib/prisma';
 import Header from '@dashboard/_components/header';
 import ChangePassword from '@dashboard/profile/_components/change-password';
 import { notFound } from 'next/navigation';
-import dayjs from 'dayjs';
 import pricing from '@/../pricing.json';
 import Heading from '@dashboard/_components/heading';
 import { formatAmount } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import type { Metadata } from 'next';
+import { differenceInDays, differenceInHours, isBefore, parseISO } from 'date-fns';
 
-function calculateRemainingTime(expirationDateString: Date) {
-  const expirationDate = dayjs(expirationDateString);
+function calculateRemainingTime(expirationDateString: Date | string) {
+  const expirationDate =
+    typeof expirationDateString === 'string'
+      ? parseISO(expirationDateString)
+      : expirationDateString;
 
-  const currentDate = dayjs();
+  const currentDate = new Date();
 
-  const hasNotExpired = currentDate.isBefore(expirationDate);
+  const hasNotExpired = isBefore(currentDate, expirationDate);
 
   if (!hasNotExpired) {
     return 'The date has already expired.';
   } else {
-    const remainingDays = expirationDate.diff(currentDate, 'days');
-    const remainingHours = expirationDate.diff(currentDate, 'hours') % 24;
+    const remainingDays = differenceInDays(expirationDate, currentDate);
+    const remainingHours = differenceInHours(expirationDate, currentDate) % 24;
     return `There are ${remainingDays} days and ${remainingHours} hours left until the expiration date.`;
   }
 }
