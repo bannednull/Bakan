@@ -26,7 +26,7 @@ async function PublicBlogPage() {
 
   return (
     <>
-      <div className="p-6">
+      <div className="border-plus border-t p-6">
         <div className="space-y-2 rounded-xl bg-accent/30 p-10">
           <h1 className="text-4xl">Blog</h1>
           <h2 className="text-xl text-muted-foreground">
