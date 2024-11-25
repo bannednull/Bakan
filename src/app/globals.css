@@ -76,3 +76,31 @@
 .border-plus::after {
   @apply absolute -right-[12px] -top-3 z-50 flex h-6 w-6 items-center justify-center bg-background text-2xl text-input content-['+'];
 }
+
+.docs pre {
+  @apply rounded-md bg-accent p-3 text-sm text-muted-foreground;
+}
+
+.docs h1,
+h2,
+h3,
+h4,
+h5 {
+  @apply font-bold;
+}
+
+.docs h2 {
+  @apply text-3xl;
+}
+
+.docs h3 {
+  @apply text-2xl;
+}
+
+.docs h4 {
+  @apply text-xl;
+}
+
+.docs ol {
+  @apply list-decimal px-6;
+}
