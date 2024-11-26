@@ -6,8 +6,8 @@ export async function generateStaticParams() {
   return allDocsData.map((doc) => ({ id: doc?.id }));
 }
 
-async function DocIdPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
+async function DocIdPage({ params }: { params: { id: string } }) {
+  const { id } = params;
   const doc = await getDocById(id);
 
   if (!doc) {

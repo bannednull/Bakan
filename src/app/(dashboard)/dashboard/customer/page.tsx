@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 type PageProps = {
-  searchParams: Promise<SearchParams>;
+  searchParams: SearchParams;
 };
 
 async function CustomerPage({ searchParams }: PageProps) {
@@ -25,7 +25,7 @@ async function CustomerPage({ searchParams }: PageProps) {
     return redirect('/dashboard');
   }
 
-  searchParamsCache.parse(await searchParams);
+  searchParamsCache.parse(searchParams);
   return (
     <ScrollArea className="h-full">
       <Header title="Customers" />

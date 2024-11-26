@@ -1,8 +1,8 @@
 import { prisma } from '@/lib/prisma';
 import { notFound } from 'next/navigation';
 
-async function BlogSlugPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+async function BlogSlugPage({ params }: { params: { slug: string } }) {
+  const { slug } = params;
   const [id] = slug.split('-');
 
   const blog = await prisma.blog.findUnique({ where: { id: +id } });
