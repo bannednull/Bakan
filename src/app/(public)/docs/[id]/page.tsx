@@ -1,5 +1,4 @@
 import { getDocById, getDocsData } from '@/lib/docs';
-import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
   const allDocsData = await getDocsData();
@@ -16,7 +15,7 @@ async function DocIdPage({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <h1 className="text-4xl font-bold">{doc.title}</h1>
+      <h1 className="mb-4 text-4xl font-bold">{doc.title}</h1>
       <div className="docs space-y-4" dangerouslySetInnerHTML={{ __html: doc.contentHtml }}></div>
     </>
   );
