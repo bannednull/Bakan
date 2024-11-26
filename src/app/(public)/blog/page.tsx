@@ -23,7 +23,7 @@ async function PublicBlogPage() {
 
   return (
     <>
-      <div className="border-plus border-t p-6">
+      <div className="border-plus border-t p-10 py-6">
         <div className="space-y-2 rounded-xl bg-accent/30 p-10">
           <h1 className="text-4xl">Blog</h1>
           <h2 className="text-xl text-muted-foreground">
@@ -32,7 +32,7 @@ async function PublicBlogPage() {
         </div>
       </div>
 
-      <div className="border-plus grid grid-cols-1 gap-4 border-t px-6 py-10 md:grid-cols-2 lg:grid-cols-3">
+      <div className="border-plus grid grid-cols-1 gap-8 border-t p-16 py-10 md:grid-cols-2 lg:grid-cols-3">
         {blogs.map((blog) => (
           <ScrollAnimate key={blog.id}>
             <Link className="hover:underline" href={`/blog/${blog.id}-${createSlug(blog.title)}`}>
