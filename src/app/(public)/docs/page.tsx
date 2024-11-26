@@ -50,12 +50,6 @@ function DocsPage() {
         STRIPE_SECRET_KEY <br />
         STRIPE_WEBHOOK_SECRET
       </pre>
-
-      <p>4. Run database migrations:</p>
-      <pre>npx prisma migrate dev</pre>
-
-      <p>5. Start the development server:</p>
-      <pre>npm run dev</pre>
     </div>
   );
 }

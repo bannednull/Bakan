@@ -104,3 +104,7 @@ h5 {
 .docs ol {
   @apply list-decimal px-6;
 }
+
+.docs ul {
+  @apply list-disc px-6;
+}
