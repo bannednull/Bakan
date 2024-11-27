@@ -4,8 +4,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
+    "dev": "ANALYZE=false next dev --turbopack",
+    "build": "ANALYZE=true next build",
     "start": "next start",
     "prettier:format": "prettier --write .",
     "lint": "next lint",

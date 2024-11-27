@@ -3,12 +3,12 @@ import withBundleAnalyzer from '@next/bundle-analyzer';
 
 const nextConfig: NextConfig = {
   experimental: {
-    turbo: {
-      resolveExtensions: ['.mdx', '.tsx', '.ts', '.jsx', '.js', '.mjs', '.json'],
-    },
+    optimizePackageImports: ['lucide-react', 'date-fns', 'recharts'],
   },
 };
 
-const config = withBundleAnalyzer()(nextConfig);
+const config = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+})(nextConfig);
 
 export default config;
