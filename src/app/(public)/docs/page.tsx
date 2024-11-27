@@ -38,11 +38,8 @@ function DocsPage() {
         NEXT_PUBLIC_SITE_URL=http://localhost:3000 <br />
         DATABASE_URL <br />
         AUTH_SECRET <br />
-        UPSTASH_REDIS_REST_URL <br />
-        UPSTASH_REDIS_REST_TOKEN <br />
-        SMTP_HOST=smtp.zoho.com <br />
-        SMTP_USER <br />
-        SMTP_PASSWORD <br />
+        RESEND_API_KEY <br />
+        RESEND_FROM_EMAIL=Bakan &lt;onboarding@resend.dev&gt; <br />
         OPENAI_API_KEY <br />
         AUTH_GOOGLE_ID <br />
         AUTH_GOOGLE_SECRET <br />
