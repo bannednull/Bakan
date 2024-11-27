@@ -3,11 +3,10 @@
 import ForgotPassword from '@/app/(auth)/forgot-password/_components/email-forgot';
 import { forgotSchema } from '@/app/(auth)/forgot-password/validate';
 import { env } from '@/lib/env';
-import { transporter } from '@/lib/nodemailer';
 import { prisma } from '@/lib/prisma';
 import { actionClient } from '@/lib/safe-action';
-import { render } from '@react-email/components';
 import { encode } from 'next-auth/jwt';
+import { Resend } from 'resend';
 
 export const forgotAction = actionClient
   .metadata({ name: 'forgot_password' })
@@ -29,13 +28,21 @@ export const forgotAction = actionClient
       salt: '_token_',
     });
 
-    const emailHtml = await render(<ForgotPassword token={tokenEmail} />);
-
     //TODO: send email
-    await transporter.sendMail({
-      from: '"Reset your password" <bakanpro@zohomail.com>',
+    const resend = new Resend(env.RESEND_API_KEY);
+
+    const { data, error } = await resend.emails.send({
+      from: env.RESEND_FROM_EMAIL,
       to: user.email!,
-      subject: 'Reset your password',
-      html: emailHtml,
+      subject: 'Forgot Password',
+      react: ForgotPassword({ token: tokenEmail }),
     });
+
+    if (error) {
+      return {
+        error: error.message,
+      };
+    }
+
+    console.log(data);
   });
