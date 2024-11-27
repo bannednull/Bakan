@@ -22,7 +22,7 @@ async function HomeHeader() {
   const session = await auth();
 
   return (
-    <header className="sticky top-0 z-50 w-full backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full bg-background">
       <nav className="mx-auto flex max-w-screen-lg items-center justify-between gap-4 border-x px-10 py-4">
         <Logo className="size-6" /> <h1 className="text-xl font-bold">Bakan</h1>
         <NavigationMenu className="mx-auto">
@@ -43,7 +43,10 @@ async function HomeHeader() {
             <>
               <Link href="/login">Sign In</Link>
               <Link
-                className={cn(buttonVariants(), 'bg-blue-500 text-white hover:bg-blue-600')}
+                className={cn(
+                  buttonVariants({ size: 'sm' }),
+                  'bg-blue-500 text-white hover:bg-blue-600',
+                )}
                 href="/register"
               >
                 Sign Up
