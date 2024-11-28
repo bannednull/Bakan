@@ -37,8 +37,8 @@ function Features() {
               Email Notifications
             </h3>
             <p>
-              Keep your users informed with dynamic, automated emails using Nodemailer and React
-              Email for templating:
+              Keep your users informed with dynamic, automated emails using Resend and React Email
+              for templating:
             </p>
             <ul className="flex flex-col gap-2">
               <li className="flex items-center gap-4">
