@@ -2,18 +2,10 @@ import Features from '@/app/_components/features';
 import Pricing from '@/app/_components/pricing';
 import Github from '@/components/brands/github';
 import { Button, buttonVariants } from '@/components/ui/button';
-import { auth } from '@/lib/auth';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
 
-export default async function Home() {
-  const session = await auth();
-
-  if (session) {
-    redirect('/dashboard');
-  }
-
+export default function Home() {
   return (
     <>
       <section className="border-plus border-t py-16 text-center">

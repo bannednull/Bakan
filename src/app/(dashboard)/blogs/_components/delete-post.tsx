@@ -11,7 +11,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { useAction } from 'next-safe-action/hooks';
-import { deleteBlogAction } from '@dashboard/blog/actions';
+import { deleteBlogAction } from '@dashboard/blogs/actions';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Loader } from 'lucide-react';

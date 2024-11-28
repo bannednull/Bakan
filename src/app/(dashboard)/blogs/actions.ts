@@ -3,7 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { actionWithAuth } from '@/lib/safe-action';
 import { prisma } from '@/lib/prisma';
-import { blogSchema } from '@dashboard/blog/validate';
+import { blogSchema } from '@dashboard/blogs/validate';
 import { z } from 'zod';
 
 export const createBlogAction = actionWithAuth

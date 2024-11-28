@@ -10,7 +10,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { PlusCircle } from 'lucide-react';
-import FormBlog from '@dashboard/blog/_components/form-blog';
+import FormBlog from '@dashboard/blogs/_components/form-blog';
 import { blogStore } from '@/lib/store/blog';
 import { useShallow } from 'zustand/shallow';
 

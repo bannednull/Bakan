@@ -1,14 +1,14 @@
 import { Suspense } from 'react';
 import Header from '@dashboard/_components/header';
-import BlogList from '@dashboard/blog/_components/blog-lits';
-import UpsertBlog from '@dashboard/blog/_components/upsert-blog';
-import { searchParamsCache } from '@dashboard/blog/searchParams';
+import BlogList from '@dashboard/blogs/_components/blog-lits';
+import UpsertBlog from '@dashboard/blogs/_components/upsert-blog';
+import { searchParamsCache } from '@dashboard/blogs/searchParams';
 import { SearchParams } from 'nuqs/server';
 import Heading from '@dashboard/_components/heading';
-import BoxSearch from '@dashboard/blog/_components/box-search';
+import BoxSearch from '@dashboard/blogs/_components/box-search';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import DeletePost from '@dashboard/blog/_components/delete-post';
-import PreviewPost from '@dashboard/blog/_components/preview-post';
+import DeletePost from '@dashboard/blogs/_components/delete-post';
+import PreviewPost from '@dashboard/blogs/_components/preview-post';
 import type { Metadata } from 'next';
 import TableLoader from '@/components/table-loader';
 

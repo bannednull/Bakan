@@ -2,8 +2,8 @@
 
 import { ColumnDef } from '@tanstack/react-table';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Blog } from '@dashboard/blog/validate';
-import CellAction from '@dashboard/blog/_components/cell-action';
+import { Blog } from '@dashboard/blogs/validate';
+import CellAction from '@dashboard/blogs/_components/cell-action';
 import { cn } from '@/lib/utils';
 
 export const columns: ColumnDef<Blog>[] = [

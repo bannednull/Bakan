@@ -71,7 +71,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
     authorized: async ({ auth, request }) => {
       const isLoggedIn = !!auth?.user;
-      const isOnDashboard = request.nextUrl.pathname.startsWith('/dashboard');
+      const protected_routes = ['/dashboard', '/profile', '/blogs', '/chat'];
+      const isOnDashboard = protected_routes.includes(request.nextUrl.pathname);
       return isLoggedIn || !isOnDashboard;
     },
   },

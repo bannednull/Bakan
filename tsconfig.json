@@ -19,7 +19,7 @@
       }
     ],
     "paths": {
-      "@dashboard/*": ["./src/app/(dashboard)/dashboard/*"],
+      "@dashboard/*": ["./src/app/(dashboard)/*"],
       "@/*": ["./src/*"]
     }
   },

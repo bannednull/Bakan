@@ -1,7 +1,7 @@
 'use client';
 
 import { DataTable } from '@/components/data-table';
-import { useFilteredBlogs } from '@dashboard/blog/searchParams';
+import { useFilteredBlogs } from '@dashboard/blogs/searchParams';
 import { ColumnDef } from '@tanstack/react-table';
 
 interface DataTableProps<TData, TValue> {

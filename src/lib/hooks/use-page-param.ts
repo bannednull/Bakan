@@ -1,6 +1,6 @@
 'use client';
 
-import { searchParams } from '@dashboard/blog/searchParams';
+import { searchParams } from '@dashboard/blogs/searchParams';
 import { useQueryState } from 'nuqs';
 import { useTransition } from 'react';
 

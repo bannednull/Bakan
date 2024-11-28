@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
-import { Blog } from '@dashboard/blog/validate';
+import { Blog } from '@dashboard/blogs/validate';
 import { blogStore } from '@/lib/store/blog';
 
 type PropsActions = {

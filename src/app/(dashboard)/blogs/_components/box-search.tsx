@@ -4,7 +4,7 @@ import { useTransition } from 'react';
 import { Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
-import { useFilteredBlogs } from '@dashboard/blog/searchParams';
+import { useFilteredBlogs } from '@dashboard/blogs/searchParams';
 
 function BoxSearch() {
   const { searchQuery, setSearchQuery, setCurrentPage } = useFilteredBlogs();
