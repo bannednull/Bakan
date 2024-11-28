@@ -37,7 +37,7 @@ function FormSignIn() {
         form.setError('root', { message: data.error });
         return;
       }
-      router.push('/');
+      router.push('/dashboard');
     },
   });
 

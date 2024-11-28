@@ -7,7 +7,7 @@ function LoginGoogle() {
     <form
       action={async () => {
         'use server';
-        await signIn('google');
+        await signIn('google', { callbackUrl: '/dashboard' });
       }}
     >
       <Button className="w-full" size="sm" type="submit" variant="outline">
