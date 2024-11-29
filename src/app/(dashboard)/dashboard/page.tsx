@@ -34,26 +34,26 @@ async function DashboardPage() {
 
         {session?.user.role === 'admin' && (
           <div className="mt-4 grid grid-cols-4 gap-4">
-            <div className="rounded-lg border bg-accent/40 p-4">
+            <div className="flex items-center rounded-lg border bg-accent/40 p-4">
               <div className="flex items-center gap-2 text-sm">
                 <CreditCard color="#3b82f6" className="size-8 rounded-full bg-background p-1.5" />{' '}
                 <span>Total Subscriptions</span>
               </div>
-              {subscriptionCount}
+              <p className="ml-auto font-bold text-blue-500">({subscriptionCount})</p>
             </div>
 
-            <div className="rounded-lg border bg-accent/40 p-4">
+            <div className="flex items-center rounded-lg border bg-accent/40 p-4">
               <div className="flex items-center gap-2 text-sm">
                 <Users2 color="#3b82f6" className="size-8 rounded-full bg-background p-1.5" />{' '}
                 <span>Total Users</span>
               </div>
-              {usersCount}
+              <p className="ml-auto font-bold text-blue-500">({usersCount})</p>
             </div>
           </div>
         )}
 
-        <div className="mt-4 grid grid-cols-3 gap-3">
-          <div className="col-span-2 space-y-3">
+        <div className="mt-4 grid grid-cols-3 gap-6">
+          <div className="col-span-2 space-y-4">
             <div className="flex items-center gap-3 rounded-md border bg-accent/40 p-5">
               <div className="flex h-12 w-12 items-center justify-center rounded-md bg-background">
                 <div className="rounded-md bg-sky-700 p-2">
