@@ -1,6 +1,6 @@
 'use server';
 
-import { prisma } from '@/lib/prisma';
+import prisma from '@/lib/prisma';
 import { actionWithAuth } from '@/lib/safe-action';
 import { changePasswordSchema } from '@dashboard/profile/validate';
 import { hash } from 'bcryptjs';

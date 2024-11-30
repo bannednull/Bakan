@@ -1,7 +1,7 @@
 'use server';
 
 import { resetPasswordSchema } from '@/app/(auth)/reset-password/validate';
-import { prisma } from '@/lib/prisma';
+import prisma from '@/lib/prisma';
 import { actionClient } from '@/lib/safe-action';
 import { hash } from 'bcryptjs';
 import { decode } from 'next-auth/jwt';
@@ -24,6 +24,9 @@ export const actionResetPassword = actionClient
       const user = await prisma.user.findUnique({
         where: {
           email: tokenData.email!,
+        },
+        omit: {
+          password: true,
         },
       });
 

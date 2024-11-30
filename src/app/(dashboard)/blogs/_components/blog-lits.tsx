@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma';
+import prisma from '@/lib/prisma';
 import { columns } from '@dashboard/blogs/_components/columns';
 import WrapperTable from '@dashboard/blogs/_components/wrapper-table';
 import { searchParamsCache } from '@dashboard/blogs/searchParams';

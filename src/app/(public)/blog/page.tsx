@@ -1,5 +1,5 @@
 import ScrollAnimate from '@/app/_components/scroll-animate';
-import { prisma } from '@/lib/prisma';
+import prisma from '@/lib/prisma';
 import { createSlug } from '@/lib/utils';
 import type { Metadata } from 'next';
 import Link from 'next/link';
@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 
 async function PublicBlogPage() {
   const blogs = await prisma.blog.findMany({
+    relationLoadStrategy: 'join',
     where: {
       User: {
         role: 'admin',

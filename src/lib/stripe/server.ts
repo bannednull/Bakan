@@ -3,7 +3,7 @@
 import Stripe from 'stripe';
 import { stripe } from '@/lib/stripe';
 import { auth } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import prisma from '@/lib/prisma';
 import { getURL, toDateTime } from '@/lib/utils';
 
 async function createOrRetrieveCustomer() {

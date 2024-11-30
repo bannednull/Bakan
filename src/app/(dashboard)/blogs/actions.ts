@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 import { actionWithAuth } from '@/lib/safe-action';
-import { prisma } from '@/lib/prisma';
+import prisma from '@/lib/prisma';
 import { blogSchema } from '@dashboard/blogs/validate';
 import { z } from 'zod';
 

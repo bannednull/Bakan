@@ -3,7 +3,7 @@
 import ForgotPassword from '@/app/(auth)/forgot-password/_components/email-forgot';
 import { forgotSchema } from '@/app/(auth)/forgot-password/validate';
 import { env } from '@/lib/env';
-import { prisma } from '@/lib/prisma';
+import prisma from '@/lib/prisma';
 import { actionClient } from '@/lib/safe-action';
 import { encode } from 'next-auth/jwt';
 import { Resend } from 'resend';
@@ -12,7 +12,7 @@ export const forgotAction = actionClient
   .metadata({ name: 'forgot_password' })
   .schema(forgotSchema)
   .action(async ({ parsedInput: { email } }) => {
-    const user = await prisma.user.findUnique({ where: { email } });
+    const user = await prisma.user.findUnique({ where: { email }, omit: { password: true } });
     if (!user) {
       return {
         error: 'This email is not registered',

@@ -2,7 +2,7 @@
 
 import { actionClient } from '@/lib/safe-action';
 import { signupSchema } from './validate';
-import { prisma } from '@/lib/prisma';
+import prisma from '@/lib/prisma';
 import { hash } from 'bcryptjs';
 import { Prisma } from '@prisma/client';
 

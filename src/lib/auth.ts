@@ -5,7 +5,7 @@ import Google from 'next-auth/providers/google';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { z } from 'zod';
 import { compare } from 'bcryptjs';
-import { prisma } from '@/lib/prisma';
+import prisma from '@/lib/prisma';
 
 const credentialsSchema = z.object({
   email: z.string().email().min(1, 'Email is required'),
@@ -71,7 +71,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
     authorized: async ({ auth, request }) => {
       const isLoggedIn = !!auth?.user;
-      const protected_routes = ['/dashboard', '/profile', '/blogs', '/chat'];
+      const protected_routes = ['/dashboard', '/profile', '/customer', '/blogs', '/chat'];
       const isOnDashboard = protected_routes.includes(request.nextUrl.pathname);
       return isLoggedIn || !isOnDashboard;
     },

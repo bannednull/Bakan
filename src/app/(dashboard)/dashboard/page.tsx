@@ -2,7 +2,7 @@ import Header from '@dashboard/_components/header';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import Heading from '@dashboard/_components/heading';
 import type { Metadata } from 'next';
-import { prisma } from '@/lib/prisma';
+import prisma from '@/lib/prisma';
 import { Book, CreditCard, Play, Users2 } from 'lucide-react';
 import Github from '@/components/brands/github';
 import Discord from '@/components/brands/discord';
