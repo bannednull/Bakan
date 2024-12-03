@@ -6,7 +6,7 @@ import prisma from '@/lib/prisma';
 import { blogSchema } from '@dashboard/blogs/validate';
 import { z } from 'zod';
 
-export const createBlogAction = actionWithAuth
+export const createAction = actionWithAuth
   .metadata({ name: 'create_blog' })
   .schema(blogSchema)
   .action(async ({ parsedInput: { title, content, published }, ctx: { userId } }) => {
@@ -26,7 +26,7 @@ export const createBlogAction = actionWithAuth
     }
   });
 
-export const updateBlogAction = actionWithAuth
+export const updateAction = actionWithAuth
   .metadata({ name: 'update_blog' })
   .schema(blogSchema)
   .action(async ({ parsedInput: { id, title, content, published }, ctx: { userId } }) => {
@@ -54,7 +54,7 @@ export const updateBlogAction = actionWithAuth
     }
   });
 
-export const deleteBlogAction = actionWithAuth
+export const deleteAction = actionWithAuth
   .metadata({ name: 'delete_blog' })
   .schema(z.object({ id: z.number() }))
   .action(async ({ parsedInput: { id }, ctx: { userId } }) => {

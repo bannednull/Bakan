@@ -19,24 +19,24 @@ import { Textarea } from '@/components/ui/textarea';
 import { LoaderCircle } from 'lucide-react';
 import { toast } from 'sonner';
 import { blogSchema } from '@dashboard/blogs/validate';
-import { createBlogAction, updateBlogAction } from '@dashboard/blogs/actions';
+import { createAction, updateAction } from '@dashboard/blogs/actions';
 import { DialogClose } from '@/components/ui/dialog';
-import { blogStore } from '@/lib/store/blog';
+import { store } from '@/lib/store/blog';
 import { useShallow } from 'zustand/shallow';
 
-function FormBlog({ close }: { close?: (open: boolean) => void }) {
-  const { isEdit, blog } = blogStore(
-    useShallow((state) => ({ isEdit: state.isEdit, blog: state.blog })),
+function FormData({ close }: { close?: (open: boolean) => void }) {
+  const { isEdit, data } = store(
+    useShallow((state) => ({ isEdit: state.isEdit, data: state.data })),
   );
 
   const form = useForm<z.infer<typeof blogSchema>>({
     resolver: zodResolver(blogSchema),
     defaultValues: isEdit
       ? {
-          id: blog?.id.toString(),
-          title: blog?.title,
-          content: blog?.content,
-          published: blog?.published,
+          id: data?.id.toString(),
+          title: data?.title,
+          content: data?.content,
+          published: data?.published,
         }
       : {
           title: '',
@@ -45,7 +45,7 @@ function FormBlog({ close }: { close?: (open: boolean) => void }) {
         },
   });
 
-  const { executeAsync } = useAction(isEdit ? updateBlogAction : createBlogAction, {
+  const { executeAsync } = useAction(isEdit ? updateAction : createAction, {
     onSuccess({ data }) {
       if (data && 'error' in data) {
         form.setError('root', { message: data.error });
@@ -121,4 +121,4 @@ function FormBlog({ close }: { close?: (open: boolean) => void }) {
   );
 }
 
-export default FormBlog;
+export default FormData;

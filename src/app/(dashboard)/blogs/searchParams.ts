@@ -10,7 +10,7 @@ export const searchParams = {
 export const searchParamsCache = createSearchParamsCache(searchParams);
 
 //hooks
-export const useFilteredBlogs = () => {
+export const useFiltered = () => {
   const { isLoading, currentPage, setCurrentPage } = usePage();
 
   const [searchQuery, setSearchQuery] = useQueryState(

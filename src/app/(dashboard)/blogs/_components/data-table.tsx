@@ -4,7 +4,7 @@ import WrapperTable from '@dashboard/blogs/_components/wrapper-table';
 import { searchParamsCache } from '@dashboard/blogs/searchParams';
 import { Prisma } from '@prisma/client';
 
-async function BlogList() {
+async function DataTable() {
   const pageSize = 10;
   const page = searchParamsCache.get('page');
   const search = searchParamsCache.get('q');
@@ -20,7 +20,7 @@ async function BlogList() {
       }
     : {};
 
-  const [blogs, totalPages] = await prisma.$transaction([
+  const [data, totalPages] = await prisma.$transaction([
     prisma.blog.findMany({
       skip,
       take: pageSize,
@@ -29,9 +29,7 @@ async function BlogList() {
     prisma.blog.count({ where: whereCondition }),
   ]);
 
-  return (
-    <WrapperTable columns={columns} data={blogs} totalItems={totalPages} pageSize={pageSize} />
-  );
+  return <WrapperTable columns={columns} data={data} totalItems={totalPages} pageSize={pageSize} />;
 }
 
-export default BlogList;
+export default DataTable;

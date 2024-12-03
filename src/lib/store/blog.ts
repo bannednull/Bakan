@@ -1,28 +1,28 @@
-import { Blog } from '@dashboard/blog/validate';
+import { Blog } from '@dashboard/blogs/validate';
 import { create } from 'zustand';
 
-interface BlogState {
+interface State {
   id: number | null;
-  blog: Blog | null;
+  data: Blog | null;
   isRemove: boolean;
   isPreview: boolean;
   isEdit: boolean;
   isOpen: boolean;
 }
 
-interface BlogActions {}
+interface Actions {}
 
-type BlogStore = BlogState & BlogActions;
+type Store = State & Actions;
 
-const initialState: BlogState = {
+const initialState: State = {
   id: null,
-  blog: null,
+  data: null,
   isRemove: false,
   isPreview: false,
   isEdit: false,
   isOpen: false,
 };
 
-export const blogStore = create<BlogStore>()(() => ({
+export const store = create<Store>()(() => ({
   ...initialState,
 }));

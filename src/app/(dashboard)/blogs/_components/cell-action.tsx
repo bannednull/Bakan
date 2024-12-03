@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { Blog } from '@dashboard/blogs/validate';
-import { blogStore } from '@/lib/store/blog';
+import { store } from '@/lib/store/blog';
 
 type PropsActions = {
   data: Blog;
@@ -24,15 +24,13 @@ function CellAction({ data }: PropsActions) {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => blogStore.setState({ blog: data, isPreview: true })}>
+        <DropdownMenuItem onClick={() => store.setState({ data, isPreview: true })}>
           <Eye strokeWidth={1} /> Preview
         </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={() => blogStore.setState({ blog: data, isOpen: true, isEdit: true })}
-        >
+        <DropdownMenuItem onClick={() => store.setState({ data, isOpen: true, isEdit: true })}>
           <Pencil strokeWidth={1} /> Edit
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => blogStore.setState({ id: data.id, isRemove: true })}>
+        <DropdownMenuItem onClick={() => store.setState({ id: data.id, isRemove: true })}>
           <Trash strokeWidth={1} /> Delete
         </DropdownMenuItem>
       </DropdownMenuContent>

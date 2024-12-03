@@ -1,6 +1,6 @@
 'use client';
 
-import { blogStore } from '@/lib/store/blog';
+import { store } from '@/lib/store/blog';
 import { useShallow } from 'zustand/shallow';
 import {
   Dialog,
@@ -11,17 +11,17 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { useAction } from 'next-safe-action/hooks';
-import { deleteBlogAction } from '@dashboard/blogs/actions';
+import { deleteAction } from '@dashboard/blogs/actions';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Loader } from 'lucide-react';
 
-function DeletePost() {
-  const { id, isRemove } = blogStore(
+function DeleteDialog() {
+  const { id, isRemove } = store(
     useShallow((state) => ({ id: state.id, isRemove: state.isRemove })),
   );
 
-  const { executeAsync, isPending } = useAction(deleteBlogAction, {
+  const { executeAsync, isPending } = useAction(deleteAction, {
     onSuccess({ data }) {
       if (data && 'error' in data) {
         return;
@@ -32,7 +32,7 @@ function DeletePost() {
   });
 
   const handleClose = () => {
-    blogStore.setState({ isRemove: false });
+    store.setState({ isRemove: false });
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -66,4 +66,4 @@ function DeletePost() {
   );
 }
 
-export default DeletePost;
+export default DeleteDialog;

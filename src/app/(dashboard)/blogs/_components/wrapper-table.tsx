@@ -1,7 +1,7 @@
 'use client';
 
 import { DataTable } from '@/components/data-table';
-import { useFilteredBlogs } from '@dashboard/blogs/searchParams';
+import { useFiltered } from '@dashboard/blogs/searchParams';
 import { ColumnDef } from '@tanstack/react-table';
 
 interface DataTableProps<TData, TValue> {
@@ -13,7 +13,7 @@ interface DataTableProps<TData, TValue> {
 
 function WrapperTable<TData, TValue>(props: DataTableProps<TData, TValue>) {
   const { columns, data, totalItems, pageSize } = props;
-  const { isLoading, currentPage, setCurrentPage } = useFilteredBlogs();
+  const { isLoading, currentPage, setCurrentPage } = useFiltered();
 
   return (
     <DataTable

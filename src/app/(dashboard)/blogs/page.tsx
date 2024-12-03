@@ -1,14 +1,14 @@
 import { Suspense } from 'react';
 import Header from '@dashboard/_components/header';
-import BlogList from '@dashboard/blogs/_components/blog-lits';
-import UpsertBlog from '@dashboard/blogs/_components/upsert-blog';
+import DataTable from '@dashboard/blogs/_components/data-table';
+import UpsertModal from '@dashboard/blogs/_components/upsert-modal';
 import { searchParamsCache } from '@dashboard/blogs/searchParams';
 import { SearchParams } from 'nuqs/server';
 import Heading from '@dashboard/_components/heading';
 import BoxSearch from '@dashboard/blogs/_components/box-search';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import DeletePost from '@dashboard/blogs/_components/delete-post';
-import PreviewPost from '@dashboard/blogs/_components/preview-post';
+import DeleteDialog from '@dashboard/blogs/_components/delete-dialog';
+import Preview from '@dashboard/blogs/_components/preview';
 import type { Metadata } from 'next';
 import TableLoader from '@/components/table-loader';
 
@@ -20,7 +20,7 @@ type PageProps = {
   searchParams: Promise<SearchParams>;
 };
 
-async function BlogPage({ searchParams }: PageProps) {
+async function Page({ searchParams }: PageProps) {
   searchParamsCache.parse(await searchParams);
   return (
     <ScrollArea className="h-full">
@@ -32,18 +32,18 @@ async function BlogPage({ searchParams }: PageProps) {
 
           <div className="flex items-center gap-4">
             <BoxSearch />
-            <UpsertBlog />
+            <UpsertModal />
           </div>
         </div>
         <Suspense fallback={<TableLoader />}>
-          <BlogList />
+          <DataTable />
         </Suspense>
       </div>
 
-      <PreviewPost />
-      <DeletePost />
+      <Preview />
+      <DeleteDialog />
     </ScrollArea>
   );
 }
 
-export default BlogPage;
+export default Page;

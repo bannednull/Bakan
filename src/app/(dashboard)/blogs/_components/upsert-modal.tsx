@@ -10,21 +10,21 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { PlusCircle } from 'lucide-react';
-import FormBlog from '@dashboard/blogs/_components/form-blog';
-import { blogStore } from '@/lib/store/blog';
+import FormData from '@dashboard/blogs/_components/form-data';
+import { store } from '@/lib/store/blog';
 import { useShallow } from 'zustand/shallow';
 
-function UpsertBlog() {
-  const { isEdit, isOpen } = blogStore(
+function UpsertModal() {
+  const { isEdit, isOpen } = store(
     useShallow((state) => ({ isEdit: state.isEdit, isOpen: state.isOpen })),
   );
 
   const handleOpen = () => {
-    blogStore.setState({ isEdit: false, isOpen: true });
+    store.setState({ isEdit: false, isOpen: true });
   };
 
   const handleClose = (open: boolean) => {
-    blogStore.setState({ isOpen: open, isEdit: false });
+    store.setState({ isOpen: open, isEdit: false });
   };
 
   return (
@@ -43,10 +43,10 @@ function UpsertBlog() {
           </DialogDescription>
         </DialogHeader>
 
-        <FormBlog close={handleClose} />
+        <FormData close={handleClose} />
       </DialogContent>
     </Dialog>
   );
 }
 
-export default UpsertBlog;
+export default UpsertModal;
