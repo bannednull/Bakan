@@ -44,9 +44,6 @@ function Features() {
               <li className="flex items-center gap-4">
                 <Check className="stroke-blue-500" /> Customizable templates
               </li>
-              <li className="flex items-center gap-4">
-                <Check className="stroke-blue-500" /> Reliable delivery with SMTP
-              </li>
             </ul>
           </div>
         </ScrollAnimate>
