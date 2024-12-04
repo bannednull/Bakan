@@ -11,6 +11,7 @@ import { formatAmount } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import type { Metadata } from 'next';
 import { differenceInDays, differenceInHours, isBefore, parseISO } from 'date-fns';
+import { CreditCard } from 'lucide-react';
 
 function calculateRemainingTime(expirationDateString: Date | string) {
   const expirationDate =
@@ -106,8 +107,15 @@ async function ProfilePage() {
                 <Heading title="Billing" description="Your current subscription details" />
 
                 {infoUser.Subscription.length === 0 ? (
-                  <div className="mt-4 text-center text-muted-foreground">
-                    You don&apos;t have any active subscriptions.
+                  <div className="mx-auto flex w-[320px] flex-col items-center gap-1 text-center">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent">
+                      <CreditCard className="h-8 w-8 text-muted-foreground" />
+                    </div>
+                    <p className="text-base font-semibold tracking-tight">No billing information</p>
+                    <p className="text-pretty text-sm text-muted-foreground">
+                      You haven&apos;t set up any billing information yet. Add a payment method to
+                      start your subscription.
+                    </p>
                   </div>
                 ) : (
                   <div className="mt-4 border-b py-2">
