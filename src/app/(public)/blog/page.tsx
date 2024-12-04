@@ -24,7 +24,7 @@ async function PublicBlogPage() {
 
   return (
     <>
-      <div className="border-plus border-t p-10 py-6">
+      <div>
         <div className="space-y-2 rounded-xl bg-accent/30 p-10">
           <h1 className="text-4xl">Blog</h1>
           <h2 className="text-xl text-muted-foreground">

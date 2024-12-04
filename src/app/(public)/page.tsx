@@ -16,7 +16,7 @@ export default async function Home() {
 
   return (
     <>
-      <section className="border-plus border-t py-16 text-center">
+      <section className="py-16 text-center">
         <div className="inline w-auto rounded-full border px-4 py-1.5 text-xs text-muted-foreground shadow-sm">
           Project Open Source SaaS Starter Kit
         </div>

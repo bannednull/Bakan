@@ -8,7 +8,7 @@ import Link from 'next/link';
 export default function Home() {
   return (
     <>
-      <section className="border-plus border-t py-16 text-center">
+      <section className="py-16 text-center">
         <div className="inline w-auto rounded-full border px-4 py-1.5 text-xs text-muted-foreground shadow-sm">
           Project Open Source SaaS Starter Kit
         </div>
@@ -38,7 +38,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-plus border-t p-16">
+      <section className="border-plus border-t py-16">
         <h3 className="text-center text-4xl font-bold">Features</h3>
         <p className="mb-10 text-center text-sm text-muted-foreground">
           Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -46,7 +46,7 @@ export default function Home() {
         <Features />
       </section>
 
-      <section className="border-plus relative border-t p-16">
+      <section className="border-plus relative border-t py-16">
         <Pricing />
       </section>
     </>

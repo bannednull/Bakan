@@ -9,7 +9,7 @@ function Features() {
           <div className="space-y-3 rounded-lg border bg-accent/40 p-5 text-sm text-muted-foreground">
             <h3 className="flex items-center gap-4 text-2xl font-bold text-foreground">
               <div className="rounded-full bg-background p-2">
-                <CreditCard />
+                <CreditCard className="stroke-blue-500" />
               </div>{' '}
               Subscriptions with Stripe
             </h3>
@@ -32,7 +32,7 @@ function Features() {
           <div className="space-y-3 rounded-lg border bg-accent/40 p-5 text-sm text-muted-foreground">
             <h3 className="flex items-center gap-4 text-2xl font-bold text-foreground">
               <div className="rounded-full bg-background p-2">
-                <Mail />
+                <Mail className="stroke-blue-500" />
               </div>{' '}
               Email Notifications
             </h3>
@@ -55,7 +55,7 @@ function Features() {
           <div className="space-y-3 rounded-lg border bg-accent/40 p-5 text-sm text-muted-foreground">
             <h3 className="flex items-center gap-4 text-2xl font-bold text-foreground">
               <div className="rounded-full bg-background p-2">
-                <Database />
+                <Database className="stroke-blue-500" />
               </div>{' '}
               Database Management
             </h3>
@@ -82,7 +82,7 @@ function Features() {
           <div className="space-y-3 rounded-lg border bg-accent/40 p-5 text-sm text-muted-foreground">
             <h3 className="flex items-center gap-4 text-2xl font-bold text-foreground">
               <div className="rounded-full bg-background p-2">
-                <Sparkles />
+                <Sparkles className="stroke-blue-500" />
               </div>{' '}
               AI-Powered Chat Integration
             </h3>
