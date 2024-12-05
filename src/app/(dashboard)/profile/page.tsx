@@ -12,6 +12,7 @@ import { Button } from '@/components/ui/button';
 import type { Metadata } from 'next';
 import { differenceInDays, differenceInHours, isBefore, parseISO } from 'date-fns';
 import { CreditCard } from 'lucide-react';
+import UploadAvatar from '@dashboard/profile/_components/upload-avatar';
 
 function calculateRemainingTime(expirationDateString: Date | string) {
   const expirationDate =
@@ -101,6 +102,10 @@ async function ProfilePage() {
             <div className="flex-1 px-6 py-2">
               <TabsContent value="account" className="h-full">
                 <Heading title="Account" description="Your account details" />
+
+                <div className="mt-4">
+                  <UploadAvatar image={infoUser.image} />
+                </div>
               </TabsContent>
 
               <TabsContent value="billing" className="h-full">

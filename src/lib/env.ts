@@ -14,6 +14,7 @@ export const env = createEnv({
     AUTH_GOOGLE_SECRET: z.string().min(1),
     RESEND_API_KEY: z.string().min(1),
     RESEND_FROM_EMAIL: z.string().min(1),
+    IMGBB_KEY: z.string().min(1),
     NODE_ENV: z.enum(['development', 'production', 'test']),
   },
 
@@ -36,6 +37,7 @@ export const env = createEnv({
     AUTH_GOOGLE_SECRET: process.env.AUTH_GOOGLE_SECRET,
     RESEND_API_KEY: process.env.RESEND_API_KEY,
     RESEND_FROM_EMAIL: process.env.RESEND_FROM_EMAIL,
+    IMGBB_KEY: process.env.IMGBB_KEY,
     NODE_ENV: process.env.NODE_ENV,
   },
 });
