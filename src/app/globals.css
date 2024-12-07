@@ -70,11 +70,11 @@
 }
 
 .border-plus::before {
-  @apply absolute -left-[12px] -top-3 z-50 flex h-6 w-6 items-center justify-center border border-input bg-background text-2xl text-input content-['+'];
+  @apply absolute -left-[12px] -top-3 z-40 flex h-6 w-6 items-center justify-center border border-input bg-background text-2xl text-input content-['+'];
 }
 
 .border-plus::after {
-  @apply absolute -right-[12px] -top-3 z-50 flex h-6 w-6 items-center justify-center border border-input bg-background text-2xl text-input content-['+'];
+  @apply absolute -right-[12px] -top-3 z-40 flex h-6 w-6 items-center justify-center border border-input bg-background text-2xl text-input content-['+'];
 }
 
 .docs pre {
