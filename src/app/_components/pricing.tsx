@@ -33,7 +33,7 @@ function Pricing() {
     }
 
     const stripe = await getStripe();
-    stripe?.redirectToCheckout({ sessionId });
+    await stripe?.redirectToCheckout({ sessionId });
   };
 
   return (

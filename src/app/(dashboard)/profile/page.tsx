@@ -13,6 +13,7 @@ import type { Metadata } from 'next';
 import { differenceInDays, differenceInHours, isBefore, parseISO } from 'date-fns';
 import { CreditCard } from 'lucide-react';
 import UploadAvatar from '@dashboard/profile/_components/upload-avatar';
+import ChangeName from '@dashboard/profile/_components/change-name';
 
 function calculateRemainingTime(expirationDateString: Date | string) {
   const expirationDate =
@@ -71,93 +72,76 @@ async function ProfilePage() {
   if (!infoUser) return notFound();
 
   return (
-    <div className="flex h-screen flex-col">
+    <div className="flex flex-col">
       <Header title="Profile" />
 
-      <ScrollArea className="flex-1">
-        <div className="flex h-full flex-col">
-          <Tabs defaultValue="account" orientation="vertical" className="flex h-full">
-            <TabsList className="flex h-full w-[230px] flex-col justify-start gap-1 rounded-none border-r bg-transparent p-4">
-              <TabsTrigger
-                value="account"
-                className="w-full justify-start data-[state=active]:bg-accent"
-              >
-                Account
-              </TabsTrigger>
+      <ScrollArea className="p-6">
+        <Tabs defaultValue="account">
+          <TabsList className="items-start justify-start gap-2">
+            <TabsTrigger value="account">Account</TabsTrigger>
+            <TabsTrigger value="billing">Billing</TabsTrigger>
+            <TabsTrigger value="password">Change password</TabsTrigger>
+          </TabsList>
 
-              <TabsTrigger
-                value="billing"
-                className="w-full justify-start data-[state=active]:bg-accent"
-              >
-                Billing
-              </TabsTrigger>
+          <div className="px-1">
+            <TabsContent value="account">
+              <Heading title="Account" description="Your account details" />
 
-              <TabsTrigger
-                value="password"
-                className="w-full justify-start data-[state=active]:bg-accent"
-              >
-                Change password
-              </TabsTrigger>
-            </TabsList>
-            <div className="flex-1 px-6 py-2">
-              <TabsContent value="account" className="h-full">
-                <Heading title="Account" description="Your account details" />
+              <div className="mt-4 space-y-2">
+                <UploadAvatar image={infoUser.image} />
+                <ChangeName />
+              </div>
+            </TabsContent>
 
-                <div className="mt-4">
-                  <UploadAvatar image={infoUser.image} />
-                </div>
-              </TabsContent>
+            <TabsContent value="billing">
+              <Heading title="Billing" description="Your current subscription details" />
 
-              <TabsContent value="billing" className="h-full">
-                <Heading title="Billing" description="Your current subscription details" />
-
-                {infoUser.Subscription.length === 0 ? (
-                  <div className="mx-auto flex w-[320px] flex-col items-center gap-1 text-center">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent">
-                      <CreditCard className="h-8 w-8 text-muted-foreground" />
-                    </div>
-                    <p className="text-base font-semibold tracking-tight">No billing information</p>
-                    <p className="text-pretty text-sm text-muted-foreground">
-                      You haven&apos;t set up any billing information yet. Add a payment method to
-                      start your subscription.
-                    </p>
+              {infoUser.Subscription.length === 0 ? (
+                <div className="mx-auto flex w-[320px] flex-col items-center gap-1 text-center">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent">
+                    <CreditCard className="h-8 w-8 text-muted-foreground" />
                   </div>
-                ) : (
-                  <div className="mt-4 border-b py-2">
-                    {infoUser.Subscription.map((item) => {
-                      const period = item.period === 'month' ? 'monthly' : 'yearly';
-                      const plan = getPlanById(item.plan!);
-                      if (!plan) return null;
-                      return (
-                        <div key={item.id} className="flex items-start justify-between">
-                          <div>
-                            <h3 className="text-lg font-bold">{plan.name}</h3>
-                            <p className="font-bold text-muted-foreground">
-                              {formatAmount(String(plan.price[period].value))} / {period}
-                            </p>
-                            <span className="text-xs text-muted-foreground">
-                              {calculateRemainingTime(item.endDate)}
-                            </span>
-                          </div>
-                          <Button size="sm" variant="outline">
-                            Cancel subscription
-                          </Button>
+                  <p className="text-base font-semibold tracking-tight">No billing information</p>
+                  <p className="text-pretty text-sm text-muted-foreground">
+                    You haven&apos;t set up any billing information yet. Add a payment method to
+                    start your subscription.
+                  </p>
+                </div>
+              ) : (
+                <div className="mt-4 border-b py-2">
+                  {infoUser.Subscription.map((item) => {
+                    const period = item.period === 'month' ? 'monthly' : 'yearly';
+                    const plan = getPlanById(item.plan!);
+                    if (!plan) return null;
+                    return (
+                      <div key={item.id} className="flex items-start justify-between">
+                        <div>
+                          <h3 className="text-lg font-bold">{plan.name}</h3>
+                          <p className="font-bold text-muted-foreground">
+                            {formatAmount(String(plan.price[period].value))} / {period}
+                          </p>
+                          <span className="text-xs text-muted-foreground">
+                            {calculateRemainingTime(item.endDate)}
+                          </span>
                         </div>
-                      );
-                    })}
-                  </div>
-                )}
-              </TabsContent>
-
-              <TabsContent value="password" className="h-full">
-                <Heading title="Change password" description="Update your password" />
-                <div className="mt-4">
-                  <ChangePassword />
+                        <Button size="sm" variant="outline">
+                          Cancel subscription
+                        </Button>
+                      </div>
+                    );
+                  })}
                 </div>
-              </TabsContent>
-            </div>
-          </Tabs>
-        </div>
+              )}
+            </TabsContent>
+
+            <TabsContent value="password">
+              <Heading title="Change password" description="Update your password" />
+              <div className="mt-4">
+                <ChangePassword />
+              </div>
+            </TabsContent>
+          </div>
+        </Tabs>
       </ScrollArea>
     </div>
   );

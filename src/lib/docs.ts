@@ -33,6 +33,6 @@ export async function getDocById(id: string) {
   return {
     id,
     contentHtml,
-    title: matterResult.data.title,
+    title: matterResult.data.title as string,
   };
 }

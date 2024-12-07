@@ -1,8 +1,12 @@
 import { auth } from '@/lib/auth';
 import { openai } from '@/lib/ia';
 import { NextResponse } from 'next/server';
-import { streamText } from 'ai';
+import { CoreMessage, streamText } from 'ai';
 import { ratelimit } from '@/lib/ratelimit';
+
+interface RequestData {
+  messages: CoreMessage[] | undefined;
+}
 
 export const maxDuration = 30;
 
@@ -18,7 +22,7 @@ export const POST = auth(async function POST(req) {
     return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
   }
 
-  const { messages } = await req.json();
+  const { messages } = (await req.json()) as RequestData;
 
   const result = await streamText({
     model: openai('gpt-3.5-turbo'),

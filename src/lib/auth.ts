@@ -1,4 +1,4 @@
-import NextAuth, { Session } from 'next-auth';
+import NextAuth, { Session, User } from 'next-auth';
 import type { JWT } from 'next-auth/jwt';
 import Credentials from 'next-auth/providers/credentials';
 import Google from 'next-auth/providers/google';
@@ -47,8 +47,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     strategy: 'jwt',
   },
   callbacks: {
-    jwt: ({ token, user, trigger, session }) => {
-      if (trigger === 'update') {
+    jwt: (params: {
+      token: JWT;
+      user?: User;
+      trigger?: 'signIn' | 'signUp' | 'update';
+      session?: any;
+    }) => {
+      const session = params.session as Session;
+      const user = params.user;
+      const token = params.token;
+
+      if (params.trigger === 'update') {
         return {
           ...token,
           ...session.user,
@@ -69,7 +78,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       session.user.role = token.role;
       return session;
     },
-    authorized: async ({ auth, request }) => {
+    authorized: ({ auth, request }) => {
       const isLoggedIn = !!auth?.user;
       const protected_routes = ['/dashboard', '/profile', '/customer', '/blogs', '/chat'];
       const isOnDashboard = protected_routes.includes(request.nextUrl.pathname);

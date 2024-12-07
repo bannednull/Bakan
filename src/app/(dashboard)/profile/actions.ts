@@ -2,7 +2,7 @@
 
 import prisma from '@/lib/prisma';
 import { actionWithAuth } from '@/lib/safe-action';
-import { changePasswordSchema, avatarSchema } from '@dashboard/profile/validate';
+import { accountSchema, changePasswordSchema, avatarSchema } from '@dashboard/profile/validate';
 import { hash } from 'bcryptjs';
 import { env } from '@/lib/env';
 import { getRandomString } from '@/lib/utils';
@@ -57,6 +57,22 @@ export const uploadAvatarAction = actionWithAuth
       },
       data: {
         image: dataResponse.data.url,
+      },
+    });
+
+    revalidatePath('/profile');
+  });
+
+export const changeNameAction = actionWithAuth
+  .metadata({ name: 'change_user_name' })
+  .schema(accountSchema)
+  .action(async ({ parsedInput: { name }, ctx: { userId } }) => {
+    await prisma.user.update({
+      where: {
+        id: +userId,
+      },
+      data: {
+        name,
       },
     });
 

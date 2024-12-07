@@ -64,15 +64,15 @@
     "zustand": "^5.0.1"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^15.0.3",
+    "@next/bundle-analyzer": "^15.0.4",
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
-    "@types/react": "npm:types-react@rc",
-    "@types/react-dom": "npm:types-react-dom@rc",
+    "@types/react": "npm:types-react@latest",
+    "@types/react-dom": "npm:types-react-dom@latest",
     "@typescript-eslint/eslint-plugin": "^8.12.2",
     "@typescript-eslint/parser": "^8.12.2",
     "eslint": "^8",
-    "eslint-config-next": "^15.0.3",
+    "eslint-config-next": "^15.0.4",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-tailwindcss": "^3.17.5",
@@ -86,7 +86,7 @@
     "typescript": "^5"
   },
   "overrides": {
-    "@types/react": "npm:types-react@rc",
-    "@types/react-dom": "npm:types-react-dom@rc"
+    "@types/react": "npm:types-react@latest",
+    "@types/react-dom": "npm:types-react-dom@latest"
   }
 }

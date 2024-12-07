@@ -20,3 +20,7 @@ export const avatarSchema = z.object({
       message: 'The file must not exceed 2 MB',
     }),
 });
+
+export const accountSchema = z.object({
+  name: z.string().min(1),
+});

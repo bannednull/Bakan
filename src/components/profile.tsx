@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { auth, signOut } from '@/lib/auth';
 import { Button } from '@/components/ui/button';
-import { Home, LogOut } from 'lucide-react';
+import { Home, Link2, LogOut } from 'lucide-react';
 import Link from 'next/link';
 
 type Props = {
@@ -56,6 +56,11 @@ async function Profile({ isSidebar = false }: Props) {
         <DropdownMenuItem>
           <Link className="flex w-full items-center gap-2" href="/dashboard">
             <Home /> Dashboard
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <Link className="flex w-full items-center gap-2" href="/home">
+            <Link2 /> Home Page
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem>

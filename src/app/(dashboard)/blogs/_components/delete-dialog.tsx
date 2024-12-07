@@ -39,7 +39,7 @@ function DeleteDialog() {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const id = formData.get('id') as string;
-    executeAsync({ id: +id });
+    await executeAsync({ id: +id });
   };
 
   return (

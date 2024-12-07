@@ -113,7 +113,7 @@ export async function handleCheckoutSessionCompleted(data: Stripe.Checkout.Sessi
           subscriptionId,
           customerId: customerId as string,
           product: planId as string,
-          plan: priceId as string,
+          plan: priceId,
           period: interval as 'month' | 'year',
           status: 'active',
           endDate,

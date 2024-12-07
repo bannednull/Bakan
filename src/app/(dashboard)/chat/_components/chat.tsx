@@ -12,7 +12,7 @@ function Chat() {
     api: '/api/conversation',
   });
 
-  const onSubmit = async (ev: React.FormEvent) => {
+  const onSubmit = (ev: React.FormEvent) => {
     ev.preventDefault();
     handleSubmit(ev);
   };

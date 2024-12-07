@@ -11,8 +11,8 @@ function BoxSearch() {
 
   const [isLoading, startTransition] = useTransition();
   const handleSearch = (value: string) => {
-    setSearchQuery(value, { startTransition });
-    setCurrentPage(1);
+    void setSearchQuery(value, { startTransition });
+    void setCurrentPage(1);
   };
 
   return (

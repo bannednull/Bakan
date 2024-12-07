@@ -20,7 +20,7 @@ export const forgotAction = actionClient
     }
 
     const tokenEmail = await encode({
-      secret: env.AUTH_SECRET!,
+      secret: env.AUTH_SECRET,
       token: {
         email: user.email,
       },
