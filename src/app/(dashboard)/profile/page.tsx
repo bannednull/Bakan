@@ -6,12 +6,11 @@ import Header from '@dashboard/_components/header';
 import ChangePassword from '@dashboard/profile/_components/change-password';
 import { notFound } from 'next/navigation';
 import pricing from '@/../pricing.json';
-import Heading from '@dashboard/_components/heading';
 import { formatAmount } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import type { Metadata } from 'next';
 import { differenceInDays, differenceInHours, isBefore, parseISO } from 'date-fns';
-import { CreditCard } from 'lucide-react';
+import { CreditCard, Info } from 'lucide-react';
 import UploadAvatar from '@dashboard/profile/_components/upload-avatar';
 import ChangeName from '@dashboard/profile/_components/change-name';
 
@@ -83,19 +82,15 @@ async function ProfilePage() {
             <TabsTrigger value="password">Change password</TabsTrigger>
           </TabsList>
 
-          <div className="px-1">
+          <div className="px-1 py-6">
             <TabsContent value="account">
-              <Heading title="Account" description="Your account details" />
-
-              <div className="mt-4 space-y-2">
+              <div className="space-y-2">
                 <UploadAvatar image={infoUser.image} />
                 <ChangeName />
               </div>
             </TabsContent>
 
             <TabsContent value="billing">
-              <Heading title="Billing" description="Your current subscription details" />
-
               {infoUser.Subscription.length === 0 ? (
                 <div className="mx-auto flex w-[320px] flex-col items-center gap-1 text-center">
                   <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent">
@@ -135,7 +130,9 @@ async function ProfilePage() {
             </TabsContent>
 
             <TabsContent value="password">
-              <Heading title="Change password" description="Update your password" />
+              <p className="flex items-center gap-2 text-muted-foreground">
+                <Info size={16} /> Update your password
+              </p>
               <div className="mt-4">
                 <ChangePassword />
               </div>

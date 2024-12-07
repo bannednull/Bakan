@@ -30,7 +30,7 @@ function Chat() {
 
   return (
     <div>
-      <ScrollArea className="mt-4 h-[400px] rounded-md border p-4">
+      <ScrollArea className="mt-4 h-[400px] rounded-t-md border border-b-0 p-4">
         <h3 className="mb-4 flex items-center gap-2 text-xl">
           <Lightbulb className="stroke-yellow-400" /> Quick Suggestions
         </h3>
@@ -63,7 +63,7 @@ function Chat() {
         ))}
       </ScrollArea>
 
-      <div className="mt-2 space-y-2">
+      <div className="-mt-1 space-y-2">
         <form onSubmit={onSubmit} className="flex items-center gap-2">
           <div className="relative w-full">
             <Input

@@ -26,8 +26,8 @@ async function Page({ searchParams }: PageProps) {
     <ScrollArea className="h-full">
       <Header title="Blog" />
 
-      <div className="py-4">
-        <div className="mb-4 flex items-center justify-between gap-4 px-6">
+      <div className="space-y-4 p-6">
+        <div className="flex items-center justify-between gap-4">
           <Heading title="Blog" description="Manage your blog posts" />
 
           <div className="flex items-center gap-4">

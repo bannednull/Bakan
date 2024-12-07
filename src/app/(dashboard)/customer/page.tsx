@@ -30,13 +30,13 @@ async function CustomerPage({ searchParams }: PageProps) {
     <ScrollArea className="h-full">
       <Header title="Customers" />
 
-      <div className="px-6 py-4">
+      <div className="space-y-4 p-6">
         <Heading title="Customers" description="Manage your customers" />
-      </div>
 
-      <Suspense fallback={<TableLoader />}>
-        <CustomerList />
-      </Suspense>
+        <Suspense fallback={<TableLoader />}>
+          <CustomerList />
+        </Suspense>
+      </div>
     </ScrollArea>
   );
 }
