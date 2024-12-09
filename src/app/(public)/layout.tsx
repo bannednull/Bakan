@@ -7,10 +7,9 @@ function LayoutHome({ children }: { children: React.ReactNode }) {
     <>
       <HomeHeader />
 
-      <main className="mx-auto max-w-screen-lg">
-        {children}
-        <footer className="border-plus relative grid grid-cols-[1fr_1fr_1fr] gap-6 border-t py-16">
-          <div className="absolute"></div>
+      <main className="mx-auto max-w-screen-lg border-x">{children}</main>
+      <footer className="relative border-t">
+        <div className="border-plus mx-auto grid max-w-screen-lg grid-cols-[1fr_1fr_1fr] gap-6 p-10 px-16">
           <div>
             <div className="flex items-center gap-2">
               <Logo className="size-6" /> <h3 className="text-xl">Bakan</h3>
@@ -32,8 +31,8 @@ function LayoutHome({ children }: { children: React.ReactNode }) {
             <Link href="#">Link 02</Link>
             <Link href="#">Link 03</Link>
           </nav>
-        </footer>
-      </main>
+        </div>
+      </footer>
     </>
   );
 }

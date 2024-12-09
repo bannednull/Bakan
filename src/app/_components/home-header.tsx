@@ -22,8 +22,8 @@ async function HomeHeader() {
   const session = await auth();
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-background">
-      <nav className="mx-auto flex max-w-screen-lg items-center justify-between gap-4 py-4">
+    <header className="sticky top-0 z-50 w-full border-b bg-background">
+      <nav className="mx-auto flex max-w-screen-xl items-center justify-between gap-2 py-4">
         <Logo className="size-6" /> <h1 className="text-xl font-bold">Bakan</h1>
         <NavigationMenu className="mx-auto">
           <NavigationMenuList className="gap-8">
@@ -36,7 +36,7 @@ async function HomeHeader() {
             ))}
           </NavigationMenuList>
         </NavigationMenu>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <ToggleTheme />
 
           {!session ? (

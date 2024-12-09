@@ -5,7 +5,7 @@ async function DocsLayout({ children }: { children: React.ReactNode }) {
   const allDocsData = await getDocsData();
 
   return (
-    <div className="grid grid-cols-[220px_1fr] border-t">
+    <div className="grid grid-cols-[220px_1fr]">
       <nav className="flex flex-col gap-3 border-r p-10">
         <Link href="/docs">Quick Start</Link>
         {allDocsData.map((doc) => (

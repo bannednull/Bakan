@@ -15,7 +15,7 @@ function IaPage() {
 
       <div className="px-6 py-4">
         <Heading title="Chat" description="Intelligent Assistant" />
-        <div className="grid grid-cols-[1fr_300px]">
+        <div className="mx-auto max-w-3xl">
           <Chat />
         </div>
       </div>

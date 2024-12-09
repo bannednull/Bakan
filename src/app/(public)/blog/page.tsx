@@ -25,7 +25,7 @@ async function PublicBlogPage() {
   return (
     <>
       <div>
-        <div className="space-y-2 rounded-xl bg-accent/30 p-10">
+        <div className="space-y-2 bg-accent/30 p-10">
           <h1 className="text-4xl">Blog</h1>
           <h2 className="text-xl text-muted-foreground">
             Explore our latest news, announcements, and articles.

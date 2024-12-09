@@ -38,7 +38,7 @@ function Chat() {
         <div className="mb-4 grid grid-cols-2 gap-2">
           {suggestions.map((suggestion) => (
             <div
-              className="rounded-md border p-4 text-sm hover:bg-accent/80"
+              className="rounded-md border border-dashed p-2 px-4 text-sm hover:bg-accent/80"
               key={suggestion}
               onClick={() => handleSuggestion(suggestion)}
             >

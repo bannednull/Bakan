@@ -74,17 +74,17 @@ async function ProfilePage() {
     <div className="flex flex-col">
       <Header title="Profile" />
 
-      <ScrollArea className="p-6">
+      <ScrollArea>
         <Tabs defaultValue="account">
-          <TabsList className="items-start justify-start gap-2">
+          <TabsList className="w-full items-start justify-start gap-2 rounded-none">
             <TabsTrigger value="account">Account</TabsTrigger>
             <TabsTrigger value="billing">Billing</TabsTrigger>
             <TabsTrigger value="password">Change password</TabsTrigger>
           </TabsList>
 
-          <div className="px-1 py-6">
+          <div className="p-6">
             <TabsContent value="account">
-              <div className="space-y-2">
+              <div className="max-w-xs space-y-2">
                 <UploadAvatar image={infoUser.image} />
                 <ChangeName />
               </div>
@@ -130,11 +130,13 @@ async function ProfilePage() {
             </TabsContent>
 
             <TabsContent value="password">
-              <p className="flex items-center gap-2 text-muted-foreground">
-                <Info size={16} /> Update your password
-              </p>
-              <div className="mt-4">
-                <ChangePassword />
+              <div className="max-w-xs">
+                <p className="flex items-center gap-2 text-muted-foreground">
+                  <Info size={16} /> Update your password
+                </p>
+                <div className="mt-4">
+                  <ChangePassword />
+                </div>
               </div>
             </TabsContent>
           </div>
