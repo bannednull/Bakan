@@ -3,7 +3,7 @@ import { columns } from '@dashboard/customer/_components/columns';
 import WrapperTable from '@dashboard/customer/_components/wrapper-table';
 import { searchParamsCache } from '@dashboard/customer/searchParams';
 
-async function CustomerList() {
+export const DataTable = async () => {
   const pageSize = 10;
   const page = searchParamsCache.get('page');
   const skip = (page - 1) * pageSize;
@@ -29,6 +29,4 @@ async function CustomerList() {
   return (
     <WrapperTable columns={columns} data={customers} totalItems={totalPages} pageSize={pageSize} />
   );
-}
-
-export default CustomerList;
+};

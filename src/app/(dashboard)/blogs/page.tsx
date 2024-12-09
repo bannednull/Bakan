@@ -1,14 +1,15 @@
 import { Suspense } from 'react';
-import Header from '@dashboard/_components/header';
-import DataTable from '@dashboard/blogs/_components/data-table';
-import UpsertModal from '@dashboard/blogs/_components/upsert-modal';
+import {
+  DataTable,
+  UpsertModal,
+  BoxSearch,
+  DeleteDialog,
+  Preview,
+} from '@dashboard/blogs/_components';
 import { searchParamsCache } from '@dashboard/blogs/searchParams';
 import { SearchParams } from 'nuqs/server';
-import Heading from '@dashboard/_components/heading';
-import BoxSearch from '@dashboard/blogs/_components/box-search';
+import { Heading, Header } from '@dashboard/_components';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import DeleteDialog from '@dashboard/blogs/_components/delete-dialog';
-import Preview from '@dashboard/blogs/_components/preview';
 import type { Metadata } from 'next';
 import TableLoader from '@/components/table-loader';
 

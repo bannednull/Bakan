@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/breadcrumb';
 import { Slash } from 'lucide-react';
 
-function Header(props: { title?: string }) {
+export const Header = (props: { title?: string }) => {
   return (
     <div className="flex items-center justify-between gap-4 border-b px-6 py-2">
       <Breadcrumb>
@@ -37,6 +37,4 @@ function Header(props: { title?: string }) {
       </div>
     </div>
   );
-}
-
-export default Header;
+};

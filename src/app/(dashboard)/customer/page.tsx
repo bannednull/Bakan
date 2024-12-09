@@ -1,9 +1,8 @@
 import TableLoader from '@/components/table-loader';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { auth } from '@/lib/auth';
-import Header from '@dashboard/_components/header';
-import Heading from '@dashboard/_components/heading';
-import CustomerList from '@dashboard/customer/_components/customer-list';
+import { Header, Heading } from '@dashboard/_components';
+import { DataTable } from '@dashboard/customer/_components/';
 import { searchParamsCache } from '@dashboard/customer/searchParams';
 import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
@@ -34,7 +33,7 @@ async function CustomerPage({ searchParams }: PageProps) {
         <Heading title="Customers" description="Manage your customers" />
 
         <Suspense fallback={<TableLoader />}>
-          <CustomerList />
+          <DataTable />
         </Suspense>
       </div>
     </ScrollArea>

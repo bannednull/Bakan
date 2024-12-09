@@ -2,7 +2,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { auth } from '@/lib/auth';
 import prisma from '@/lib/prisma';
-import Header from '@dashboard/_components/header';
+import { Header } from '@dashboard/_components';
 import ChangePassword from '@dashboard/profile/_components/change-password';
 import { notFound } from 'next/navigation';
 import pricing from '@/../pricing.json';

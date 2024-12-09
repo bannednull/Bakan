@@ -11,7 +11,7 @@ import { store } from '@/lib/store/blog';
 import { useShallow } from 'zustand/shallow';
 import { formatDistanceToNow } from 'date-fns';
 
-function Preview() {
+export const Preview = () => {
   const { isPreview, data } = store(
     useShallow((state) => ({ isPreview: state.isPreview, data: state.data })),
   );
@@ -30,6 +30,4 @@ function Preview() {
       </SheetContent>
     </Sheet>
   );
-}
-
-export default Preview;
+};

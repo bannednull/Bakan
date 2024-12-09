@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import { useFiltered } from '@dashboard/blogs/searchParams';
 
-function BoxSearch() {
+export const BoxSearch = () => {
   const { searchQuery, setSearchQuery, setCurrentPage } = useFiltered();
 
   const [isLoading, startTransition] = useTransition();
@@ -29,6 +29,4 @@ function BoxSearch() {
       </div>
     </div>
   );
-}
-
-export default BoxSearch;
+};

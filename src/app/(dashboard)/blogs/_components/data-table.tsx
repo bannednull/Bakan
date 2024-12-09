@@ -4,7 +4,7 @@ import WrapperTable from '@dashboard/blogs/_components/wrapper-table';
 import { searchParamsCache } from '@dashboard/blogs/searchParams';
 import { Prisma } from '@prisma/client';
 
-async function DataTable() {
+export const DataTable = async () => {
   const pageSize = 10;
   const page = searchParamsCache.get('page');
   const search = searchParamsCache.get('q');
@@ -30,6 +30,4 @@ async function DataTable() {
   ]);
 
   return <WrapperTable columns={columns} data={data} totalItems={totalPages} pageSize={pageSize} />;
-}
-
-export default DataTable;
+};

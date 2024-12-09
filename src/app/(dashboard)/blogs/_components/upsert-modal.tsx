@@ -14,7 +14,7 @@ import FormData from '@dashboard/blogs/_components/form-data';
 import { store } from '@/lib/store/blog';
 import { useShallow } from 'zustand/shallow';
 
-function UpsertModal() {
+export const UpsertModal = () => {
   const { isEdit, isOpen } = store(
     useShallow((state) => ({ isEdit: state.isEdit, isOpen: state.isOpen })),
   );
@@ -47,6 +47,4 @@ function UpsertModal() {
       </DialogContent>
     </Dialog>
   );
-}
-
-export default UpsertModal;
+};

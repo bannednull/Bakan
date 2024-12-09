@@ -16,7 +16,7 @@ import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Loader } from 'lucide-react';
 
-function DeleteDialog() {
+export const DeleteDialog = () => {
   const { id, isRemove } = store(
     useShallow((state) => ({ id: state.id, isRemove: state.isRemove })),
   );
@@ -64,6 +64,4 @@ function DeleteDialog() {
       </DialogContent>
     </Dialog>
   );
-}
-
-export default DeleteDialog;
+};

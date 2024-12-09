@@ -1,6 +1,5 @@
 import { ScrollArea } from '@/components/ui/scroll-area';
-import Header from '@dashboard/_components/header';
-import Heading from '@dashboard/_components/heading';
+import { Header, Heading } from '@dashboard/_components';
 import Chat from '@dashboard/chat/_components/chat';
 import type { Metadata } from 'next';
 
