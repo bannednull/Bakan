@@ -5,6 +5,7 @@ import {
   BoxSearch,
   DeleteDialog,
   Preview,
+  Tools,
 } from '@dashboard/blogs/_components';
 import { searchParamsCache } from '@dashboard/blogs/searchParams';
 import { SearchParams } from 'nuqs/server';
@@ -23,6 +24,7 @@ type PageProps = {
 
 async function Page({ searchParams }: PageProps) {
   searchParamsCache.parse(await searchParams);
+
   return (
     <ScrollArea className="h-full">
       <Header title="Blog" />
@@ -33,6 +35,7 @@ async function Page({ searchParams }: PageProps) {
 
           <div className="flex items-center gap-4">
             <BoxSearch />
+            <Tools />
             <UpsertModal />
           </div>
         </div>

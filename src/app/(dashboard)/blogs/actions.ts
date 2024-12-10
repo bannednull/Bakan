@@ -5,6 +5,7 @@ import { actionWithAuth } from '@/lib/safe-action';
 import prisma from '@/lib/prisma';
 import { blogSchema } from '@dashboard/blogs/validate';
 import { z } from 'zod';
+import { Parser } from 'json2csv';
 
 export const createAction = actionWithAuth
   .metadata({ name: 'create_blog' })
@@ -69,5 +70,25 @@ export const deleteAction = actionWithAuth
       return { success: 'Blog deleted successfully' };
     } catch {
       return { error: 'Something went wrong' };
+    }
+  });
+
+export const exportDataAction = actionWithAuth
+  .metadata({ name: 'export_data_csv' })
+  .action(async ({ ctx: { userId } }) => {
+    try {
+      const data = await prisma.blog.findMany({
+        where: {
+          userId: +userId,
+        },
+      });
+
+      const fields = ['title', 'content', 'published', 'createdAt'];
+      const json2csvParser = new Parser({ fields });
+      const csv = json2csvParser.parse(data);
+
+      return { success: true, csv };
+    } catch {
+      return { success: false, error: 'Failed to export CSV' };
     }
   });
