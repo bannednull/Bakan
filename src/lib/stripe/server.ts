@@ -2,39 +2,39 @@
 
 import Stripe from 'stripe';
 import { stripe } from '@/lib/stripe';
-import { auth } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import { getURL, toDateTime } from '@/lib/utils';
+import { getUser } from '../auth/session';
 
 async function createOrRetrieveCustomer() {
-  const session = await auth();
-  if (!session) throw new Error('No session found.');
+  const user = await getUser();
+  if (!user) throw new Error('No session found.');
 
   let customer: string;
-  if (!session.user.customerId) {
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email as string },
+  if (!user.customerId) {
+    const userData = await prisma.user.findUnique({
+      where: { email: user.email as string },
     });
 
-    if (!user) throw new Error('User not found.');
+    if (!userData) throw new Error('User not found.');
 
-    if (!user.customerId) {
+    if (!userData.customerId) {
       //create customer in stripe
       const customerStripe = await stripe.customers.create({
-        email: session.user.email as string,
+        email: user.email as string,
       });
       customer = customerStripe.id;
 
       //update customerId in prisma
       await prisma.user.update({
-        where: { email: session.user.email as string },
+        where: { email: user.email as string },
         data: { customerId: customer },
       });
     } else {
-      customer = user.customerId;
+      customer = userData.customerId;
     }
   } else {
-    customer = session.user.customerId;
+    customer = user.customerId;
   }
 
   return customer;

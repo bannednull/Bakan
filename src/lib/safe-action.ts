@@ -1,8 +1,8 @@
 import { DEFAULT_SERVER_ERROR_MESSAGE, createSafeActionClient } from 'next-safe-action';
 import { z } from 'zod';
-import { auth } from './auth';
 import { headers } from 'next/headers';
 import { ratelimit } from '@/lib/ratelimit';
+import { getUser } from './auth/session';
 
 export const actionClient = createSafeActionClient({
   handleServerError(e) {
@@ -50,13 +50,13 @@ export const actionClient = createSafeActionClient({
   });
 
 export const actionWithAuth = actionClient.use(async ({ next }) => {
-  const session = await auth();
+  const user = await getUser();
 
-  if (!session) {
+  if (!user) {
     throw new Error('Session not found!');
   }
 
-  const userId = session.user?.id;
+  const userId = user.id;
 
   return next({ ctx: { userId } });
 });

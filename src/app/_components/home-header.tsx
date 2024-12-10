@@ -8,9 +8,10 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from '@/components/ui/navigation-menu';
-import { auth } from '@/lib/auth';
+import { getUser } from '@/lib/auth/session';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
+import { use } from 'react';
 
 const routes = [
   { title: 'Home', href: '/' },
@@ -18,8 +19,8 @@ const routes = [
   { title: 'Docs', href: '/docs' },
 ];
 
-async function HomeHeader() {
-  const session = await auth();
+function HomeHeader() {
+  const user = use(getUser());
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background">
@@ -39,7 +40,7 @@ async function HomeHeader() {
         <div className="flex items-center gap-2">
           <ToggleTheme />
 
-          {!session ? (
+          {!user ? (
             <>
               <Link href="/login">Sign In</Link>
               <Link

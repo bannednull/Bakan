@@ -6,24 +6,26 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { auth, signOut } from '@/lib/auth';
+import { signOut } from '@/lib/auth';
 import { Button } from '@/components/ui/button';
 import { Home, Link2, LogOut } from 'lucide-react';
 import Link from 'next/link';
+import { use } from 'react';
+import { getUser } from '@/lib/auth/session';
 
 type Props = {
   isSidebar?: boolean;
 };
 
-async function Profile({ isSidebar = false }: Props) {
-  const session = await auth();
-  if (!session) return null;
+function Profile({ isSidebar = false }: Props) {
+  const user = use(getUser());
+  if (!user) return null;
 
   const getTwofirtsletters = (str: string) => {
     return str.slice(0, 2).toUpperCase();
   };
 
-  const email = getTwofirtsletters(session.user.email!);
+  const email = getTwofirtsletters(user.email!);
 
   return (
     <DropdownMenu>
@@ -42,7 +44,7 @@ async function Profile({ isSidebar = false }: Props) {
             variant="ghost"
           >
             <small className="rounded-md bg-accent p-1.5 text-foreground">{email}</small>{' '}
-            {session.user.email}
+            {user.email}
           </Button>
         )}
       </DropdownMenuTrigger>

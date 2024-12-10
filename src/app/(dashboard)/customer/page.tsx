@@ -1,6 +1,7 @@
 import TableLoader from '@/components/table-loader';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { auth } from '@/lib/auth';
+import { getUser } from '@/lib/auth/session';
 import { Header, Heading } from '@dashboard/_components';
 import { DataTable } from '@dashboard/customer/_components/';
 import { searchParamsCache } from '@dashboard/customer/searchParams';
@@ -18,13 +19,14 @@ type PageProps = {
 };
 
 async function CustomerPage({ searchParams }: PageProps) {
-  const session = await auth();
+  searchParamsCache.parse(await searchParams);
 
-  if (session?.user.role !== 'admin') {
+  const user = await getUser();
+
+  if (user?.role !== 'admin') {
     return redirect('/dashboard');
   }
 
-  searchParamsCache.parse(await searchParams);
   return (
     <ScrollArea className="h-full">
       <Header title="Customers" />

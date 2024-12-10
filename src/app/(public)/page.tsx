@@ -2,23 +2,24 @@ import Features from '@/app/_components/features';
 import Pricing from '@/app/_components/pricing';
 import Github from '@/components/brands/github';
 import { Button, buttonVariants } from '@/components/ui/button';
-import { auth } from '@/lib/auth';
+import { getUser } from '@/lib/auth/session';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { use } from 'react';
 
-export default async function Home() {
-  const session = await auth();
+export default function Home() {
+  const user = use(getUser());
 
-  if (session) {
-    redirect('/dashboard');
+  if (user) {
+    return redirect('/dashboard');
   }
 
   return (
     <>
       <section className="py-16 text-center">
         <div className="inline w-auto rounded-full border px-4 py-1.5 text-xs text-muted-foreground shadow-sm">
-          Project Open Source SaaS Starter Kit
+          Project Open Source SaaS Starter Kit{' '}
         </div>
         <div className="relative mx-auto mt-4">
           <div className="pointer-events-none absolute inset-0 -top-2 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_70%,black)] dark:[mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>

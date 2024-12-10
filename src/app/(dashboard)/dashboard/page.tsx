@@ -6,14 +6,14 @@ import { Book, CreditCard, Play, Users2 } from 'lucide-react';
 import Github from '@/components/brands/github';
 import Discord from '@/components/brands/discord';
 import X from '@/components/brands/x';
-import { auth } from '@/lib/auth';
+import { getUser } from '@/lib/auth/session';
 
 export const metadata: Metadata = {
   title: 'Dashboard',
 };
 
 async function DashboardPage() {
-  const session = await auth();
+  const user = await getUser();
 
   const [subscriptionCount, usersCount] = await prisma.$transaction([
     prisma.subscription.count({
@@ -31,7 +31,7 @@ async function DashboardPage() {
       <div className="px-6 py-4">
         <Heading title="Dashboard" description="Welcome to your dashboard" />
 
-        {session?.user.role === 'admin' && (
+        {user?.role === 'admin' && (
           <div className="mt-4 grid grid-cols-4 gap-4">
             <div className="flex items-center rounded-lg border px-4 py-2.5">
               <div className="flex items-center gap-2 text-sm">

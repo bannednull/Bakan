@@ -1,6 +1,5 @@
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { auth } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import { Header } from '@dashboard/_components';
 import ChangePassword from '@dashboard/profile/_components/change-password';
@@ -13,6 +12,7 @@ import { differenceInDays, differenceInHours, isBefore, parseISO } from 'date-fn
 import { CreditCard, Info } from 'lucide-react';
 import UploadAvatar from '@dashboard/profile/_components/upload-avatar';
 import ChangeName from '@dashboard/profile/_components/change-name';
+import { getUser } from '@/lib/auth/session';
 
 function calculateRemainingTime(expirationDateString: Date | string) {
   const expirationDate =
@@ -47,12 +47,12 @@ export const metadata: Metadata = {
 };
 
 async function ProfilePage() {
-  const session = await auth();
-  if (!session) return notFound();
+  const user = await getUser();
+  if (!user) return notFound();
 
   const infoUser = await prisma.user.findUnique({
     where: {
-      id: +session.user.id,
+      id: +user.id,
     },
     select: {
       id: true,
