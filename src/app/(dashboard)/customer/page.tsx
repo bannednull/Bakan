@@ -1,12 +1,11 @@
 import TableLoader from '@/components/table-loader';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { auth } from '@/lib/auth';
 import { getUser } from '@/lib/auth/session';
 import { Header, Heading } from '@dashboard/_components';
 import { DataTable } from '@dashboard/customer/_components/';
 import { searchParamsCache } from '@dashboard/customer/searchParams';
 import type { Metadata } from 'next';
-import { redirect } from 'next/navigation';
+import { forbidden } from 'next/navigation';
 import { SearchParams } from 'nuqs/server';
 import { Suspense } from 'react';
 
@@ -24,7 +23,7 @@ async function CustomerPage({ searchParams }: PageProps) {
   const user = await getUser();
 
   if (user?.role !== 'admin') {
-    return redirect('/dashboard');
+    forbidden();
   }
 
   return (

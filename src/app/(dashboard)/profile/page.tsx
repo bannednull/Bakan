@@ -3,7 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import prisma from '@/lib/prisma';
 import { Header } from '@dashboard/_components';
 import ChangePassword from '@dashboard/profile/_components/change-password';
-import { notFound } from 'next/navigation';
+import { forbidden } from 'next/navigation';
 import pricing from '@/../pricing.json';
 import { formatAmount } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
 
 async function ProfilePage() {
   const user = await getUser();
-  if (!user) return notFound();
+  if (!user) forbidden();
 
   const infoUser = await prisma.user.findUnique({
     where: {
@@ -68,7 +68,7 @@ async function ProfilePage() {
     },
   });
 
-  if (!infoUser) return notFound();
+  if (!infoUser) forbidden();
 
   return (
     <div className="flex flex-col">

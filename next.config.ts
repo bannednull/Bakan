@@ -3,6 +3,7 @@ import withBundleAnalyzer from '@next/bundle-analyzer';
 
 const nextConfig: NextConfig = {
   experimental: {
+    authInterrupts: true,
     optimizePackageImports: ['lucide-react', 'date-fns', 'recharts'],
     turbo: {
       resolveExtensions: ['.ts', '.tsx', '.js', '.jsx', '.mjs', '.json'],

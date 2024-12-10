@@ -17,7 +17,7 @@
     "@ai-sdk/openai": "^0.0.72",
     "@auth/prisma-adapter": "2.7.2",
     "@hookform/resolvers": "^3.9.1",
-    "@next/third-parties": "^15.0.4",
+    "@next/third-parties": "15.1.0",
     "@prisma/client": "^6.0.0",
     "@radix-ui/react-checkbox": "^1.1.2",
     "@radix-ui/react-dialog": "^1.1.2",
@@ -46,7 +46,7 @@
     "gray-matter": "^4.0.3",
     "json2csv": "^6.0.0-alpha.2",
     "lucide-react": "^0.454.0",
-    "next": "^15.0.4",
+    "next": "15.1.0",
     "next-auth": "^5.0.0-beta.25",
     "next-safe-action": "^7.9.9",
     "next-themes": "^0.3.0",
@@ -63,19 +63,21 @@
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.23.8",
-    "zustand": "^5.0.1"
+    "zustand": "^5.0.1",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^15.0.4",
+    "@next/bundle-analyzer": "15.1.0",
     "@types/bcryptjs": "^2.4.6",
     "@types/json2csv": "^5.0.7",
     "@types/node": "^20",
-    "@types/react": "npm:types-react@latest",
-    "@types/react-dom": "npm:types-react-dom@latest",
+    "@types/react": "19.0.1",
+    "@types/react-dom": "19.0.2",
     "@typescript-eslint/eslint-plugin": "^8.12.2",
     "@typescript-eslint/parser": "^8.12.2",
     "eslint": "^8",
-    "eslint-config-next": "^15.0.4",
+    "eslint-config-next": "15.1.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-tailwindcss": "^3.17.5",
@@ -89,7 +91,7 @@
     "typescript": "^5"
   },
   "overrides": {
-    "@types/react": "npm:types-react@latest",
-    "@types/react-dom": "npm:types-react-dom@latest"
+    "@types/react": "19.0.1",
+    "@types/react-dom": "19.0.2"
   }
 }
