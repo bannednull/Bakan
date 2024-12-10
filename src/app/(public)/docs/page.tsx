@@ -43,6 +43,7 @@ function DocsPage() {
         OPENAI_API_KEY <br />
         AUTH_GOOGLE_ID <br />
         AUTH_GOOGLE_SECRET <br />
+        NEXT_PUBLIC_GA_MEASUREMENT_ID <br />
         NEXT_PUBLIC_STRIPE_PUBLIC <br />
         STRIPE_SECRET_KEY <br />
         STRIPE_WEBHOOK_SECRET

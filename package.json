@@ -17,6 +17,7 @@
     "@ai-sdk/openai": "^0.0.72",
     "@auth/prisma-adapter": "2.7.2",
     "@hookform/resolvers": "^3.9.1",
+    "@next/third-parties": "^15.0.4",
     "@prisma/client": "^6.0.0",
     "@radix-ui/react-checkbox": "^1.1.2",
     "@radix-ui/react-dialog": "^1.1.2",

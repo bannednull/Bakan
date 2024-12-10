@@ -1,10 +1,11 @@
 import HomeHeader from '@/app/_components/home-header';
 import Logo from '@/components/logo';
+import { AnalitycsProvider } from '@/lib/analitycs';
 import Link from 'next/link';
 
 function LayoutHome({ children }: { children: React.ReactNode }) {
   return (
-    <>
+    <AnalitycsProvider>
       <HomeHeader />
 
       <main className="mx-auto max-w-screen-lg border-x">{children}</main>
@@ -33,7 +34,7 @@ function LayoutHome({ children }: { children: React.ReactNode }) {
           </nav>
         </div>
       </footer>
-    </>
+    </AnalitycsProvider>
   );
 }
 
