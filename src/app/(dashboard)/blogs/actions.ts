@@ -36,7 +36,7 @@ export const updateAction = actionWithAuth
     }
 
     try {
-      await prisma.blog.update({
+      const result = await prisma.blog.updateMany({
         where: {
           id: +id,
           userId: +userId,
@@ -47,6 +47,11 @@ export const updateAction = actionWithAuth
           published,
         },
       });
+
+      if (result.count === 0) {
+        return { error: 'No blog found to update' };
+      }
+
       revalidatePath('/dashboard/blog');
       return { success: 'Blog updated successfully' };
     } catch (error) {

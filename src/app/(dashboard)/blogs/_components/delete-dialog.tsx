@@ -24,7 +24,7 @@ export const DeleteDialog = () => {
   const { executeAsync, isPending } = useAction(deleteAction, {
     onSuccess({ data }) {
       if (data && 'error' in data) {
-        return;
+        return toast.error(data.error);
       }
       handleClose();
       toast.success('Remove post');
