@@ -1,5 +1,7 @@
 # Bakan ~ Next.JS App Router
 
+![bakan](./public/screen.jpg)
+
 ## Environment Variables
 
 ```bash
